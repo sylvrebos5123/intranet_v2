@@ -4,6 +4,7 @@ class User extends CI_Controller
 {
 	private $theme = 'default';
 	private $var = null;
+	private $var2 = null;
 	
 	public function __construct()
 	{
