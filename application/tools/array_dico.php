@@ -3,7 +3,7 @@
 /* fichier généré par dico_generate_array.php  */ 
 /* sur base des informations contenues dans la */ 
 /* table `cpas_dico` dans la DB                */ 
-/* génére le : 2016-02-05 10:51:09             */ 
+/* génére le : 2016-02-05 02:32:48             */ 
 /***********************************************/ 
 /* les modifications manuelles effectuées dans */ 
 /* ce fichier seront écrasés lors de           */ 
@@ -216,6 +216,8 @@ $array_dico["etat"]["F"]="Etat";
 $array_dico["etat"]["N"]="etat";
 $array_dico["etat_civil"]["F"]="etat_civil[fr]";
 $array_dico["etat_civil"]["N"]="etat_civil[nl]";
+$array_dico["evenements"]["F"]="Evènements";
+$array_dico["evenements"]["N"]="Evenementen";
 $array_dico["evenement_F"]["F"]="Evenement [FR]";
 $array_dico["evenement_F"]["N"]="Evenement (Frans.]";
 $array_dico["evenement_N"]["F"]="Evenement [NL]";
@@ -396,6 +398,8 @@ $array_dico["nom_utilisateur"]["F"]="Login utilisateur";
 $array_dico["nom_utilisateur"]["N"]="Gebruikersnaam";
 $array_dico["NON"]["F"]="NON";
 $array_dico["NON"]["N"]="NEE";
+$array_dico["notes_service"]["F"]="Notes de service";
+$array_dico["notes_service"]["N"]="Dienstnota";
 $array_dico["no_informations_are_modified"]["F"]="Aucune information n'est modifiée.";
 $array_dico["no_informations_are_modified"]["N"]="Geen informatie werd veranderd.";
 $array_dico["no_operation_this_request_have_not_object"]["F"]="Cette opération n'est pas nécessaire";
