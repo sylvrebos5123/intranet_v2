@@ -94,6 +94,9 @@ switch(new_page)
 	case '/pages/applications': 
 		$(".side-nav>li:eq(5)").addClass('active');
 		break;
+	case '/pages/archives': 
+		$(".side-nav>li:eq(6)").addClass('active');
+		break;
 	default:
 		$(".side-nav>li:eq(1)").addClass('active');
 		break;
