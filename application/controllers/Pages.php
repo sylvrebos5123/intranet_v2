@@ -136,7 +136,10 @@ class Pages extends CI_Controller
 	
 	}
 	
-	
+	function archives()
+	{
+		$this->layout->view('pages/archives');
+	}
 	/*function agenda_officiel()
 	{
 		$rootpath = APPPATH.'\\libraries';
