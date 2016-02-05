@@ -123,7 +123,13 @@ foreach($menu as $k=>$v)
 <?php
 } // fin foreach
 ?>
-	 
+	<li>
+		
+		<a href="<?php echo site_url('pages/archives?langue='.$_SESSION['langue']);?>" class="link">
+		<i class="fa fa-archive"></i>	<?php echo dico('archives',$_SESSION['langue']);?>
+		</a>
+	</li>
+  
 	<hr>
 	<li><a href="#" onclick="fOpenExplorer('x:');"><?php echo dico('mon_service',$_SESSION['langue']);?></a></li>
 	<li><a href="https://webmail.irisnet.be/owa" target="_blank"><?php echo dico('mandataires',$_SESSION['langue']);?></a></li>
@@ -145,23 +151,7 @@ foreach($menu as $k=>$v)
   <li>
     <a class="link"><i class="fa fa-fw fa-shopping-cart"></i>Commandes<i class="fa fa-chevron-down"></i></a>
     <ul class="submenu">
-		<li>
-			<a href="#">Commandes cartouches</a>
-		</li>
-		<li>
-			<a href="#">Bon de commande Lyreco</a>
-		</li>
-    </ul>
-  </li>
-  <li>
-    <a href="<?php echo site_url('pages/guides?langue='.$_SESSION['langue']);?>" class="link"><i class="fa fa-fw fa-file"></i>Guides du C.P.A.S </a>
-    
-  </li>
-  
-  <li>
-	<a href="<?php echo site_url('pages/applications?langue='.$_SESSION['langue']);?>" class="link"><i class="fa fa-fw fa-laptop"></i>Mes applications </a>
-    
-  </li>-->
+	
   
 </ul>
 </div>
