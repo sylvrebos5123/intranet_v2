@@ -136,7 +136,25 @@ class Pages extends CI_Controller
 	
 	}
 	
-	/*function annuaire_pdf()
+	
+	/*function agenda_officiel()
+	{
+		$rootpath = APPPATH.'\\libraries';
+		include($rootpath.'\\exchange\\ews.php');
+		include($rootpath.'\\config_ews\\config_ews.php');
+
+		//agenda officiel
+		$username=trim($email_array['agenda_off']['email']);
+		$password=trim($email_array['agenda_off']['email_psw']);
+		$start_date='01-01-2016';
+		$end_date='01-01-2017';
+		$data['a_rdv'] = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,''); 
+		$this->layout->view('pages/agenda_officiel',$data);
+		
+	}
+	
+	
+	function annuaire_pdf()
 	{
 		//$this->loadModel('Page');
 		

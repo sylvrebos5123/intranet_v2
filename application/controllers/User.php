@@ -16,12 +16,12 @@ class User extends CI_Controller
 		$this->load->helper('MY_url_helper');
 		$this->load->helper('assets_helper');
 		$this->load->library('layout');
-		$this->layout->ajouter_css('databases.min');
+		//$this->layout->ajouter_css('databases.min');
 		$this->layout->ajouter_css('bootstrap.min');
 		$this->layout->ajouter_css('sb-admin');
 		
 		$this->layout->set_theme('login');
-		$this->load->helper('language');
+		//$this->load->helper('language');
 	}
 	
 	
@@ -40,10 +40,8 @@ class User extends CI_Controller
 		
 		$this->form_validation->set_message('required', 'Ce champ ne peut pas être vide');
 		
-		
-		
 		//Compare infos with LDAP			
-		include($_SERVER['DOCUMENT_ROOT'].'/config_ldap/config_ldap.php');
+		include(APPPATH.'/libraries/config_ldap/config_ldap.php');
 		
 		//Form validation			
 		if($this->form_validation->run())

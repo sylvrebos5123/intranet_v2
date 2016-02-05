@@ -3,13 +3,15 @@
 /* fichier généré par dico_generate_array.php  */ 
 /* sur base des informations contenues dans la */ 
 /* table `cpas_dico` dans la DB                */ 
-/* génére le : 2016-02-01 11:52:00             */ 
+/* génére le : 2016-02-05 10:51:09             */ 
 /***********************************************/ 
 /* les modifications manuelles effectuées dans */ 
 /* ce fichier seront écrasés lors de           */ 
 /* l'utilisation de generate_dico.php     */ 
 /***********************************************/ 
 $array_dico=array();
+$array_dico[""]["F"]="";
+$array_dico[""]["N"]="";
 $array_dico["accueil"]["F"]="Accueil";
 $array_dico["accueil"]["N"]="Home";
 $array_dico["actif"]["F"]="Actif";
@@ -24,6 +26,8 @@ $array_dico["afficher"]["F"]="afficher[fr]";
 $array_dico["afficher"]["N"]="afficher[nl]";
 $array_dico["afficher_cellules"]["F"]="Afficher les cellules";
 $array_dico["afficher_cellules"]["N"]="Zie cellen";
+$array_dico["agenda_officiel"]["F"]="Agenda officiel";
+$array_dico["agenda_officiel"]["N"]="Officiële agenda";
 $array_dico["Agent"]["F"]="Agent";
 $array_dico["Agent"]["N"]="Agent";
 $array_dico["already_exist"]["F"]="existe déjà";
@@ -36,6 +40,8 @@ $array_dico["archived_flag"]["F"]="archived_flag[fr]";
 $array_dico["archived_flag"]["N"]="archived_flag[nl]";
 $array_dico["archived_user"]["F"]="archived_user[fr]";
 $array_dico["archived_user"]["N"]="archived_user[nl]";
+$array_dico["archives"]["F"]="Archives";
+$array_dico["archives"]["N"]="Archieven";
 $array_dico["archive_F"]["F"]="Archive (FR)";
 $array_dico["archive_F"]["N"]="Archive(Ndls)";
 $array_dico["archive_N"]["F"]="Archive (Ndls)";
@@ -170,6 +176,8 @@ $array_dico["date_situation_effectifs"]["F"]="date_situation_effectifs[fr]";
 $array_dico["date_situation_effectifs"]["N"]="date_situation_effectifs[nl]";
 $array_dico["date_test"]["F"]="date_test[fr]";
 $array_dico["date_test"]["N"]="date_test[nl]";
+$array_dico["day"]["F"]="Journalier";
+$array_dico["day"]["N"]="Dag";
 $array_dico["deconnexion"]["F"]="Déconnexion";
 $array_dico["deconnexion"]["N"]="Uitloggen";
 $array_dico["departement"]["F"]="Département";
@@ -350,6 +358,8 @@ $array_dico["modif_date"]["F"]="Date de Modification";
 $array_dico["modif_date"]["N"]="Datum van de verandering";
 $array_dico["modif_user"]["F"]="Utilisateur Modication";
 $array_dico["modif_user"]["N"]="Gebruiker modication";
+$array_dico["mon_agenda"]["F"]="Mon agenda";
+$array_dico["mon_agenda"]["N"]="Mijn agenda";
 $array_dico["mon_profil"]["F"]="Mon profil";
 $array_dico["mon_profil"]["N"]="Mijn profijl";
 $array_dico["mon_service"]["F"]="Mon service";
@@ -564,6 +574,8 @@ $array_dico["titre_evenement_F"]["F"]="titre_evenement_F[fr]";
 $array_dico["titre_evenement_F"]["N"]="titre_evenement_F[nl]";
 $array_dico["titre_evenement_N"]["F"]="titre_evenement_N[fr]";
 $array_dico["titre_evenement_N"]["N"]="titre_evenement_N[nl]";
+$array_dico["today"]["F"]="Aujourd'hui";
+$array_dico["today"]["N"]="Vandaag";
 $array_dico["to_publish_date"]["F"]="to_publish_date[fr]";
 $array_dico["to_publish_date"]["N"]="to_publish_date[nl]";
 $array_dico["to_publish_flag"]["F"]="to_publish_flag[fr]";
@@ -604,3 +616,5 @@ $array_dico["varchar_3b"]["F"]="varchar_3b[fr]";
 $array_dico["varchar_3b"]["N"]="varchar_3b[nl]";
 $array_dico["voir_organigramme_cpas"]["F"]="Voir l'organigramme du CPAS";
 $array_dico["voir_organigramme_cpas"]["N"]="Zie grafiek van het OCMW";
+$array_dico["week"]["F"]="Hebdomadaire";
+$array_dico["week"]["N"]="Week";

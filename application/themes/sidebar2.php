@@ -81,7 +81,7 @@ foreach($menu as $k=>$v)
 							}
 							else
 							{
-								$lien=$w->lien;
+								$lien=$w->lien.'?langue='.$_SESSION['langue'];
 							}
 					?>
 						<li>
@@ -96,9 +96,17 @@ foreach($menu as $k=>$v)
 				
 				if($w->id_menu==1) //menu Agendas
 				{
+					if(empty($w->lien))
+					{
+						$lien='#';
+					}
+					else
+					{
+						$lien=$w->lien.'?langue='.$_SESSION['langue'];
+					}
 					?>
 						<li>
-							<a href="#">
+							<a href="<?php echo $lien;?>">
 								<?php echo $w->{'sous_menu_'.$_SESSION['langue']};?>
 							</a>
 						</li>
@@ -119,6 +127,7 @@ foreach($menu as $k=>$v)
 	<hr>
 	<li><a href="#" onclick="fOpenExplorer('x:');"><?php echo dico('mon_service',$_SESSION['langue']);?></a></li>
 	<li><a href="https://webmail.irisnet.be/owa" target="_blank"><?php echo dico('mandataires',$_SESSION['langue']);?></a></li>
+	<li><a href="<?php echo site_url('pages/archives?langue='.$_SESSION['langue']);?>" target="_blank"><?php echo dico('archives',$_SESSION['langue']);?></a></li>
   <!--<li>
     <a class="link"><i class="fa fa-fw fa-calendar"></i>Agendas<i class="fa fa-chevron-down"></i></a>
     <ul class="submenu">
