@@ -1,10 +1,4 @@
 
-<?php
-//include_once( APPPATH. '/tools/function_dico.php');
-//print_r ($this->session->all_userdata());
-
-//echo ''.$_SESSION['User']->id_agent;
-?>
 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -81,6 +75,36 @@
 						?>
 						</div><!-- /.col -->
 						
+						<!--Evènements-->
+						<div class="col-lg-6">
+						  <div class="panel panel-default panel-darkred">
+							<div class="panel-heading">
+								
+								<h4><?php echo dico("evenements",$_SESSION['langue']);?></h4>
+							</div>
+							<div class="panel-body">
+	
+							
+							</div>
+						  </div>
+						  
+						</div>
+						
+						<!--Notes de service-->
+						<div class="col-lg-6">
+						  <div class="panel panel-default panel-darkred">
+							<div class="panel-heading">
+								
+								<h4><?php echo dico("notes_service",$_SESSION['langue']);?></h4>
+							</div>
+							<div class="panel-body">
+	
+							
+							</div>
+						  </div>
+						  
+						</div>
+						<!--Actualités-->
 						<div class="col-lg-6">
 						  <div class="panel panel-default panel-darkred">
 							<div class="panel-heading">
