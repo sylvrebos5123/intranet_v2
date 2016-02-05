@@ -133,26 +133,7 @@ foreach($menu as $k=>$v)
 	<hr>
 	<li><a href="#" onclick="fOpenExplorer('x:');"><?php echo dico('mon_service',$_SESSION['langue']);?></a></li>
 	<li><a href="https://webmail.irisnet.be/owa" target="_blank"><?php echo dico('mandataires',$_SESSION['langue']);?></a></li>
-	<li><a href="<?php echo site_url('pages/archives?langue='.$_SESSION['langue']);?>" target="_blank"><?php echo dico('archives',$_SESSION['langue']);?></a></li>
-  <!--<li>
-    <a class="link"><i class="fa fa-fw fa-calendar"></i>Agendas<i class="fa fa-chevron-down"></i></a>
-    <ul class="submenu">
-		<li >
-			<a id="mon_agenda" data-toggle="modal" href="#infos">Mon agenda</a>  
-		</li>
-		<li>
-			<a id="agenda_officiel" data-toggle="modal" href="#infos">Agenda officiel</a>
-		</li>
-		 <li>
-			<a href="#">Notre E-Organizer</a>
-		</li>
-    </ul>
-  </li>
-  <li>
-    <a class="link"><i class="fa fa-fw fa-shopping-cart"></i>Commandes<i class="fa fa-chevron-down"></i></a>
-    <ul class="submenu">
 	
-  
 </ul>
 </div>
 </nav>
