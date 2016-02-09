@@ -60,12 +60,34 @@
 				{
 					$ou=' - '.$v['OU'];
 				}
+				//start_heure
+				if(empty($v['START_HEURE']))
+				{
+					$start_heure='';
+				}
+				else
+				{
+					$start_heure='T'.$v['START_HEURE'];
+				
+				}
+				//end_heure
+				if(empty($v['END_HEURE']))
+				{
+					$end_heure='';
+				}
+				else
+				{
+					$end_heure='T'.$v['END_HEURE'];
+				
+				}
+				
 			?>
 				{
 					title: '<?php echo $v['SUJET'].$ou;?>',
-					start: '<?php echo $end_date[2].'-'.$end_date[1].'-'.$end_date[0].'T'.$v['START_HEURE'];?>',
-					end: '<?php echo $v['END_DATE'].'T'.$v['END_HEURE'];?>'
+					start: '<?php echo $start_date[2].'-'.$start_date[1].'-'.$start_date[0].$start_heure;?>',
+					end: '<?php echo $end_date[2].'-'.$end_date[1].'-'.$end_date[0].$end_heure;?>'
 				},
+				
 				
 			<?php
 			}
