@@ -24,10 +24,7 @@
                     </div>
                 </div>
 				
-				
 				<?php
-
-					//echo $_SESSION['User']->langue;
 					
 					$i=0;
 					$panel_color='panel-yellow';
@@ -35,6 +32,7 @@
 				?>
 					<div class="row">
 						<div class="col-lg-6">
+					
 						<?php
 						
 						foreach($articles as $k => $v)
@@ -75,7 +73,8 @@
 						?>
 						</div><!-- /.col -->
 						
-						<!--Evènements-->
+						
+						<!--EvÃ¨nements-->
 						<div class="col-lg-6">
 						  <div class="panel panel-default panel-darkred">
 							<div class="panel-heading">
@@ -83,30 +82,66 @@
 								<h4><?php echo dico("evenements",$_SESSION['langue']);?></h4>
 							</div>
 							<div class="panel-body">
-	
+								<?php
+								if(!empty($a_rdv))
+								{
+									foreach($a_rdv as $k=>$v) //result data
+									{
+										if($v['OU']=='')
+										{
+											$ou='';
+										}
+										else
+										{
+											$ou=' - '.$v['OU'];
+										}
+										
+										echo '<p>'.$v['SUJET'].$ou.' - '.$v['START_DATE'].' - '.$v['START_HEURE'].'</p>';
+										
+										
+									}
+								}
+								else
+								{
+								echo dico('no_event',$_SESSION['langue']);
+								}
+								//print_r($a_rdv);
+								?>
 							
 							</div>
 						  </div>
-						  
 						</div>
 						
 						<!--Notes de service-->
 						<div class="col-lg-6">
-						  <div class="panel panel-default panel-darkred">
+						  <div class="panel panel-default">
 							<div class="panel-heading">
 								
 								<h4><?php echo dico("notes_service",$_SESSION['langue']);?></h4>
 							</div>
 							<div class="panel-body">
-	
+								<?php //print_r($notes_service); 
+								
+								foreach($notes_service as $k => $v)
+								{
+								?>
+									<p>
+									
+										<a href="http://intranet.cpasixelles.be/gestion_agent/archives/archives/<?php echo $v->{'url_fichier_'.$_SESSION['langue']};?>" target="_blank">
+										<?php echo $v->{'sous_titre_'.$_SESSION['langue']};?>
+										</a>
+									</p>
+								<?php
+								}
+								?>
 							
 							</div>
 						  </div>
 						  
 						</div>
-						<!--Actualités-->
+						<!--ActualitÃ©s-->
 						<div class="col-lg-6">
-						  <div class="panel panel-default panel-darkred">
+						  <div class="panel panel-default">
 							<div class="panel-heading">
 								
 								<h4><?php echo dico("actualites",$_SESSION['langue']);?></h4>
