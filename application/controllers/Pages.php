@@ -42,9 +42,36 @@ class Pages extends CI_Controller
 				->from('cpas_articles')
 				->where($condition)
 				->order_by( 'to_publish_date', 'desc')
-				->limit('0','10')
+				->limit(10)
 				->get()
 				->result();	
+				
+				
+		//Notes de service
+		$condition=array('to_publish_flag' => 1,'code_type' => 2);
+		$data['notes_service'] = $this->db->select('*')
+				->from('cpas_archives')
+				->where($condition)
+				->order_by( 'to_publish_date', 'desc')
+				->limit(10)
+				->get()
+				->result();	
+		
+		
+		//events
+		$rootpath = APPPATH.'\\libraries';
+		include($rootpath.'\\exchange\\ews.php');
+		include($rootpath.'\\config_ews\\config_ews.php');
+
+		//agenda officiel
+		$username=trim($email_array['agenda_news_F']['email']);
+		$password=trim($email_array['agenda_news_F']['email_psw']);
+		$start_date=date('d-m-Y');
+		$end_date=date('d-m-Y',strtotime('+6 month')); 
+		/* $start_date='01-01-2014';
+		$end_date='31-12-2016';*/
+		$data['a_rdv'] = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,'');
+		
 		$this->layout->view('pages/index',$data);
 	}
 	
