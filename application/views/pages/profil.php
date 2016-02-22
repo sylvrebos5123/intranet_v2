@@ -24,8 +24,8 @@
 		
 		<?php 
 		
-		foreach($user as $row)
-		{
+		//foreach($user as $row)
+		//{
 		
 		?>
 		
@@ -38,29 +38,29 @@
 			<div class="form-group row ">
 				<label class="col-sm-2" for="inputregistre_id"><?php echo dico("registre_id",$_SESSION['langue']);?> : </label>
 				<div class="col-sm-10">
-				<input type="text" name="registre_id" id="inputregistre_id" class="form-control" value="<?php echo $row->registre_id;?>"  disabled="disabled">
+				<input type="text" name="registre_id" id="inputregistre_id" class="form-control" value="<?php echo $_SESSION['User']->registre_id;?>"  disabled="disabled">
 				</div>
 			</div>					
 			<div class="form-group row ">
 				<label class="col-sm-2" for="inputnom"><?php echo dico("nom",$_SESSION['langue']);?> : </label>
 				<div class="col-sm-10">
-				<input type="text" name="nom" id="inputnom" class="form-control" value="<?php echo $row->nom;?>"  disabled="disabled"></div></div>					
+				<input type="text" name="nom" id="inputnom" class="form-control" value="<?php echo $_SESSION['User']->nom;?>"  disabled="disabled"></div></div>
 			<div class="form-group row ">
 				<label class="col-sm-2" for="inputprenom"><?php echo dico("prenom",$_SESSION['langue']);?> : </label>
 				<div class="col-sm-10">
-				<input type="text" name="prenom" id="inputprenom" class="form-control" value="<?php echo $row->prenom;?>"  disabled="disabled"></div></div>					
+				<input type="text" name="prenom" id="inputprenom" class="form-control" value="<?php echo $_SESSION['User']->prenom;?>"  disabled="disabled"></div></div>
 			<div class="form-group row ">
 				<label class="col-sm-2" for="inputemail"><?php echo dico("email",$_SESSION['langue']);?> : </label>
 				<div class="col-sm-10">
-				<input type="text" name="email" id="inputemail" class="form-control" value="<?php echo $row->email;?>"  disabled="disabled"></div></div>					
+				<input type="text" name="email" id="inputemail" class="form-control" value="<?php echo $_SESSION['User']->email;?>"  disabled="disabled"></div></div>
 			<div class="form-group row ">
 				<label class="col-sm-2" for="inputmobile_pro"><?php echo dico("mobile_pro",$_SESSION['langue']);?> : </label>
 				<div class="col-sm-10">
-				<input type="text" name="mobile_pro" id="inputmobile_pro" class="form-control" value="<?php echo $row->mobile_pro;?>"  disabled="disabled"></div></div>					
+				<input type="text" name="mobile_pro" id="inputmobile_pro" class="form-control" value="<?php echo $_SESSION['User']->mobile_pro;?>"  disabled="disabled"></div></div>
 			<div class="form-group row ">
 				<label class="col-sm-2" for="inputlangue"><?php echo dico("langue",$_SESSION['langue']);?> : </label>
 				<div class="col-sm-10">
-				<input type="text" name="langue" id="inputlangue" class="form-control" value="<?php echo $row->langue;?>"  disabled="disabled"></div></div>					
+				<input type="text" name="langue" id="inputlangue" class="form-control" value="<?php echo $_SESSION['User']->langue;?>"  disabled="disabled"></div></div>
 			<div class="form-group row ">
 				<label class="col-sm-2" for="inputpersonne_confiance"><?php echo dico("personne_confiance",$_SESSION['langue']);?> : </label>
 				<?php
@@ -91,7 +91,7 @@
 				</fieldset>
 			</form>
 		<?php
-		}//end foreach user
+		//}//end foreach user
 		?>
 		<hr>
 		<!-- Fonction(s), coordonnées et disponibilités -->
