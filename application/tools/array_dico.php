@@ -3,7 +3,7 @@
 /* fichier généré par dico_generate_array.php  */ 
 /* sur base des informations contenues dans la */ 
 /* table `cpas_dico` dans la DB                */ 
-/* génére le : 2016-02-05 02:32:48             */ 
+/* génére le : 2016-02-19 02:19:40             */ 
 /***********************************************/ 
 /* les modifications manuelles effectuées dans */ 
 /* ce fichier seront écrasés lors de           */ 
@@ -400,6 +400,8 @@ $array_dico["NON"]["F"]="NON";
 $array_dico["NON"]["N"]="NEE";
 $array_dico["notes_service"]["F"]="Notes de service";
 $array_dico["notes_service"]["N"]="Dienstnota";
+$array_dico["no_event"]["F"]="Pas d'évènement";
+$array_dico["no_event"]["N"]="Geen evenement";
 $array_dico["no_informations_are_modified"]["F"]="Aucune information n'est modifiée.";
 $array_dico["no_informations_are_modified"]["N"]="Geen informatie werd veranderd.";
 $array_dico["no_operation_this_request_have_not_object"]["F"]="Cette opération n'est pas nécessaire";
