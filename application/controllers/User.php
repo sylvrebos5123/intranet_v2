@@ -58,7 +58,7 @@ class User extends CI_Controller
 
 			$bind = @ldap_bind($ldap, $ldaprdn, $password);
 
-			//Verify if the user and password are correct
+			//Verify if the user and password are correct in LDAP
 			if ($bind) {
 				$filter="(sAMAccountName=$username)";
 				$result = ldap_search($ldap,$ldap_dc_connect,$filter);
@@ -73,13 +73,21 @@ class User extends CI_Controller
 					$user=$this->db->select('*')
 					->from('cpas_agents')
 					->where(array('login_nt'=>$this->input->post('login')))
-					//->where(array('login_nt'=>$this->input->post('login'),'password_email'=>sha1($this->input->post('password'))))
 					->get()
 					->result();
 					
 					$this->load->library('session');
 				
 					$this->session->set_userdata('User', $user[0]);
+
+					// read contracts
+
+					$contrats=$this->db->select('*')
+							->from('cpas_contrats')
+							->where('id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+							->get()
+							->result();
+					$this->session->set_userdata('Contrats', $contrats);
 					redirect(site_url("pages/index"));
 					
 				}
