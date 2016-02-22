@@ -8,7 +8,7 @@ class Pages extends CI_Controller
 	{
 		parent::__construct();
 		
-		//	Chargement des ressources pour tout le contrôleur
+		//	Chargement des ressources pour tout le contrï¿½leur
 		$this->load->database();
 		$this->load->helper('MY_url_helper');
 		$this->load->helper('assets_helper');
@@ -199,11 +199,11 @@ class Pages extends CI_Controller
 	{
 		//Infos agent
 		
-		$data['user']=$this->db->select('registre_id,nom,prenom,email,langue,mobile_pro,personne_confiance')
+		/*$data['user']=$this->db->select('registre_id,nom,prenom,email,langue,mobile_pro,personne_confiance')
 							->from('cpas_agents')
 							->where(array('cpas_agents.id_agent'=>$_SESSION['User']->id_agent))
 							->get()
-							->result();
+							->result();*/
 		
 		//Infos contrat
 		
@@ -231,7 +231,7 @@ class Pages extends CI_Controller
 		
 	}
 	
-	/*Permet d'éditer les infos téléphoniques du profil*/
+	/*Permet d'ï¿½diter les infos tï¿½lï¿½phoniques du profil*/
 	function edit_infos_tel($id = null)
 	{
 		
