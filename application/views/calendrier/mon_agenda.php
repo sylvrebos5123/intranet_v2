@@ -30,6 +30,7 @@
 				right: 'month,basicWeek,basicDay'
 			},
 			defaultDate: '<?php echo date('Y-m-d');?>',
+			defaultView: 'basicWeek',
 			/*buttonText :
 			{
 			today:    '<?php echo dico('today',$_SESSION['langue']);?>',
