@@ -40,9 +40,10 @@
 					right: 'month,agendaWeek,agendaDay'
 				},
 				defaultDate: '<?php echo date('Y-m-d');?>',
+				defaultView:'agendaWeek',
 				timezone: currentTimezone,
-				editable: true,
-				selectable: true,
+				editable: false,
+				selectable: false,
 				eventLimit: true, // allow "more" link when too many events
 				timeFormat: 'H:mm', // uppercase H for 24-hour clock
 				events: [
