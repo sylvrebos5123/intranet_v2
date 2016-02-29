@@ -1,20 +1,12 @@
 <?php
 require_once APPPATH. '/tools/generate_dico.php';
 
-//Inside the file libraries/layout.php
-/*if(isset($_GET['langue']))
-{
-	$_SESSION['langue']=$_GET['langue'];
-}
-else
-{
-	$_SESSION['langue']="F";
-}*/
 
 if(!isset($_SESSION['User']))
 {
 	redirect(site_url("user/login"));
 }
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
@@ -31,6 +23,7 @@ if(!isset($_SESSION['User']))
 		<script src='<?php echo base_url().'assets/fullcalendar-2.6.0/';?>lib/moment.min.js'></script>
 		<script src='<?php echo base_url().'assets/fullcalendar-2.6.0/';?>lib/jquery.min.js'></script>
 		<script src='<?php echo base_url().'assets/fullcalendar-2.6.0/';?>fullcalendar.min.js'></script>
+		<script src='<?php echo base_url().'assets/fullcalendar-2.6.0/';?>lang-all.js'></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url().'assets/fullcalendar-2.6.0/fullcalendar.css';?>" />
 		<link href="<?php echo base_url().'assets/fullcalendar-2.6.0/fullcalendar.print.css';?>" rel='stylesheet' media='print' />
 	
@@ -60,7 +53,7 @@ if(!isset($_SESSION['User']))
 
 		<div class="container-fluid">
 		<p class="text-right">
-			<a class="lang" href="?langue=F" title="Français">
+			<a class="lang" href="?langue=F" title="FranÃ§ais">
 				<img src="<?php echo base_url().'assets/img/fr.gif';?>">&nbsp; F &nbsp;
 			</a>
 		
