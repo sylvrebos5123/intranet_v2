@@ -1,4 +1,18 @@
-
+<?php
+// switch language calendar
+	$lang='';
+	
+	switch($_GET['langue'])
+	{
+		case 'F':$lang='fr';
+				break;
+		case 'N':$lang='nl';
+				break;
+		default:$lang='fr';
+				break;
+	
+	}
+?>
 <div class="row">
 	<div class="col-lg-12">
 	
@@ -22,7 +36,7 @@
 
 	$(document).ready(function() {
 		var currentTimezone = false;
-
+		var currentLangCode='<?php echo $lang;?>';
 		// when the timezone selector changes, rerender the calendar
 		$('#timezone-selector').on('change', function() {
 			currentTimezone = this.value || false;
@@ -39,6 +53,7 @@
 				},
 				defaultDate: '<?php echo date('Y-m-d');?>',
 				defaultView:'agendaWeek',
+				lang: currentLangCode,
 				timezone: currentTimezone,
 				editable: false,
 				selectable: false,
