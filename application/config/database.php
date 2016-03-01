@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'cpasxldb',
+	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'root',
-	'database' => 'cpas_test',
+	'database' => 'intranet',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
