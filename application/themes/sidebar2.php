@@ -44,7 +44,7 @@ foreach($menu as $k=>$v)
 			?>
 		</a>
 		<?php
-		//s'il y a un menu déroulant
+		//s'il y a un menu dï¿½roulant
 		if($chevron_down!='')
 		{
 			//lecture sous-menu
@@ -56,7 +56,7 @@ foreach($menu as $k=>$v)
 				->result();
 			
 			
-			//lecture droits d'accès pour les applis
+			//lecture droits d'accï¿½s pour les applis
 			$agents_applis=$this->db->select('*')
 				->from('cpas_agents_applis')
 				->where(array('id_agent' => $_SESSION['User']->id_agent))
@@ -73,7 +73,7 @@ foreach($menu as $k=>$v)
 				{
 					foreach($agents_applis as $k2=>$w2)
 					{
-						if($w->id_sous_menu == $w2->id_appli) //vérification droit par r/aux applis
+						if($w->id_sous_menu == $w2->id_appli) //vï¿½rification droit par r/aux applis
 						{
 							if(empty($w->lien))
 							{
@@ -85,7 +85,7 @@ foreach($menu as $k=>$v)
 							}
 					?>
 						<li>
-							<a href="<?php echo $lien;?>" target="_blank">
+							<a href="<?php echo $lien;?>" >
 								<?php echo $w->{'sous_menu_'.$_SESSION['langue']};?>
 							</a>
 						</li>
