@@ -88,6 +88,9 @@ switch(new_page)
 	case '/pages/index': 
 		$(".side-nav>li:eq(1)").addClass('active');
 		break;
+	case '/pages/send_order_cartridge':
+		$(".side-nav>li:eq(3)").addClass('active');
+		break;
 	case '/pages/guides': 
 		$(".side-nav>li:eq(4)").addClass('active');
 		break;
