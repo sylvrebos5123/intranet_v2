@@ -190,10 +190,7 @@ class Pages extends CI_Controller
 		
 	}
 	
-	function mon_profil()
-	{
-		$this->layout->view('pages/mon_profil');	
-	}*/
+*/
 	
 	function profil($id = null)
 	{
@@ -246,6 +243,33 @@ class Pages extends CI_Controller
 		$this->session->set_flashdata( 'message',dico('infos_bien_enregistrees',$_SESSION['langue']));
 		$_SESSION['flash_message'] = $this->session->flashdata('message');
 		redirect(site_url("pages/profil?langue=".$_SESSION['langue']));
+	}
+
+	/*Send order for cartridges*/
+	public function send_order_cartridge()
+	{
+		// read list of agents
+		$data['agents']=$this->db->select('cpas_agents.id_agent,nom,prenom')
+            ->from('cpas_agents')
+            ->join('cpas_contrats','cpas_contrats.id_agent=cpas_agents.id_agent','left')
+            ->where('cpas_agents.id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+            ->get()
+            ->result();
+
+		$this->load->library('form_validation');
+
+		// That method creates delimiters by default for messages errors (<p></p>).
+		$this->form_validation->set_error_delimiters('<p class="alert alert-danger has-error">', '</p>');
+
+		//	Form validation rules
+
+		$this->form_validation->set_rules('login',  '"Login"',  'required');
+		$this->form_validation->set_rules('password', '"Password"', 'required');
+
+		$this->form_validation->set_message('required', 'Ce champ ne peut pas être vide');
+
+		$this->layout->view('pages/send_order_cartridge',$data);
+
 	}
 
 
