@@ -1,7 +1,21 @@
+<?php
+// switch language calendar
+$lang='';
 
+switch($_GET['langue'])
+{
+	case 'F':$lang='fr';
+		break;
+	case 'N':$lang='nl';
+		break;
+	default:$lang='fr';
+		break;
+
+}
+?>
 <div class="row">
 	<div class="col-lg-12">
-	
+
 		<h1 class="page-header">
 			<?php echo dico("agenda_officiel",$_SESSION['langue']); ?>
 		</h1>
@@ -15,151 +29,111 @@
 		</ol>
 	</div>
 </div>
-<div class="row">
-	<div class="col-lg-12">
-		<?php
 
-		/*$rootpath = APPPATH.'\\libraries';
-		include($rootpath.'\\exchange\\ews.php');
-		include($rootpath.'\\config_ews\\config_ews.php');
 
-		//agenda officiel
-		$username=trim($email_array['agenda_off']['email']);
-		$password=trim($email_array['agenda_off']['email_psw']);
-		$start_date='01-02-2016';
-		$end_date='01-04-2016';
-		$a_rdv = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,''); */
-		//print_r($a_rdv);
 
-		/*foreach($a_rdv as $k=>$v)
-		{
-			echo $v['START_DATE'];
-			echo $v['END_DATE'];
-			echo $v['SUJET'];
-			echo $v['OU'];
-			echo $v['START_HEURE'];
-			echo $v['END_HEURE'];*/
-		?>
-		<br>
-		<?php
-		//}
-		//mon agenda
-		/*$username='sylvie.vrebos@cpasxl.irisnet.be';
-		$password='ixelles1';
-		$start_date='01-02-2016';
-		$end_date='01-04-2016';
-		$a_rdv = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,''); 
-		//print_r($a_rdv);
-
-		echo 'mon agenda<br>';
-		foreach($a_rdv as $k=>$v)
-		{
-			echo $v['START_DATE'];
-			echo $v['END_DATE'];
-			echo $v['SUJET'];
-			echo $v['OU'];
-			echo $v['START_HEURE'];
-			echo $v['END_HEURE'];*/
-		?>
-		<br>
-		<?php
-		//}
-		?>
-	</div>
-</div>
-<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url().'assets/fullcalendar-2.6.0/fullcalendar.css';?>" />
-
-<link href="<?php echo base_url().'assets/fullcalendar-2.6.0/fullcalendar.print.css';?>" rel='stylesheet' media='print' />
-<style>
-
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-</style>
 <div id='calendar'></div>
-<script src='<?php echo base_url().'assets/fullcalendar-2.6.0/';?>lib/moment.min.js'></script>
-<script src='<?php echo base_url().'assets/fullcalendar-2.6.0/';?>lib/jquery.min.js'></script>
-<script src='<?php echo base_url().'assets/fullcalendar-2.6.0/';?>fullcalendar.min.js'></script>
+
 <script>
 
 	$(document).ready(function() {
-		
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek,basicDay'
-			},
-			defaultDate: '2016-01-12',
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2016-01-01'
-				},
-				{
-					title: 'Long Event',
-					start: '2016-01-07',
-					end: '2016-01-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2016-01-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2016-01-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2016-01-11',
-					end: '2016-01-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2016-01-12T10:30:00',
-					end: '2016-01-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2016-01-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2016-01-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2016-01-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2016-01-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2016-01-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2016-01-28'
-				}
-			]
+		var currentTimezone = false;
+		var currentLangCode='<?php echo $lang;?>';
+		// when the timezone selector changes, rerender the calendar
+		$('#timezone-selector').on('change', function() {
+			currentTimezone = this.value || false;
+			$('#calendar').fullCalendar('destroy');
+			renderCalendar();
 		});
-		
+
+		function renderCalendar() {
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				defaultDate: '<?php echo date('Y-m-d');?>',
+				defaultView:'agendaWeek',
+				timezone: currentTimezone,
+				lang: currentLangCode,
+				editable: false,
+				selectable: false,
+				eventLimit: true, // allow "more" link when too many events
+				timeFormat: 'H:mm', // uppercase H for 24-hour clock
+				events: [
+					<?php
+				foreach($a_rdv as $k=>$v) //result data
+				{
+					$start_date=explode('/',$v['START_DATE']);
+					$end_date=explode('/',$v['END_DATE']);
+					if($v['OU']=='')
+					{
+						$ou='';
+					}
+					else
+					{
+						$ou=' - '.$v['OU'];
+					}
+
+					//start_heure
+					if(empty($v['START_HEURE']))
+					{
+						$start_heure='';
+					}
+					else
+					{
+						$start_heure='T'.$v['START_HEURE'];
+
+					}
+					//end_heure
+					if(empty($v['END_HEURE']))
+					{
+						$end_heure='';
+					}
+					else
+					{
+						$end_heure='T'.$v['END_HEURE'];
+
+					}
+			?>
+					{
+						title: '<?php echo $v['SUJET'].$ou;?>',
+						start: '<?php echo $start_date[2].'-'.$start_date[1].'-'.$start_date[0].$start_heure;?>',
+						end: '<?php echo $end_date[2].'-'.$end_date[1].'-'.$end_date[0].$end_heure;?>'
+					},
+
+					<?php
+                        }
+                    ?>
+					{
+						title: 'All Day Event',
+						start: '0000-00-00'
+					}
+
+
+				],
+				loading: function(bool) {
+					$('#loading').toggle(bool);
+				},
+				eventRender: function(event, el) {
+					// render the timezone offset below the event title
+					if (event.start.hasZone()) {
+						el.find('.fc-title').after(
+								$('<div class="tzo"/>').text(event.start.format('Z'))
+						);
+					}
+				},
+				dayClick: function(date) {
+					console.log('dayClick', date.format());
+				},
+				select: function(startDate, endDate) {
+					console.log('select', startDate.format(), endDate.format());
+				}
+			});
+		}
+
+		renderCalendar();
 	});
 
 </script>
