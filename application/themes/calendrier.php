@@ -49,6 +49,9 @@ if(!isset($_SESSION['User']))
 					<script type="text/javascript" src="<?php echo $url;?>"></script>
 
 				<?php endforeach; ?>
+				<script>
+					$(".side-nav>li:eq(2)").addClass('active');
+				</script>
 			</div>
 			<!-- /.container-fluid -->
 
