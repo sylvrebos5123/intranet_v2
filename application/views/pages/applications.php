@@ -1,4 +1,3 @@
-<?php //print_r($applis);?>
 <!-- Page Heading -->
 <div class="row">
 	<div class="col-lg-12">
@@ -31,7 +30,7 @@
 				}
 			?>
 				<li>
-					<a href="<?php echo $lien;?>" target="_blank"><?php echo $v->$sous_menu;?></a>
+					<a href="<?php echo ROOT.'/'.$lien;?>" target="_blank"><?php echo $v->$sous_menu;?></a>
 				</li>
 			<?php
 			}
