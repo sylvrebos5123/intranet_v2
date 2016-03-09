@@ -12,7 +12,7 @@ class Pages extends CI_Controller
 		$this->load->database();
 		$this->load->helper('MY_url_helper');
 		$this->load->helper('assets_helper');
-		$this->load->library('layout');
+		$this->load->library('Layout');
 		//CSS
 		$this->layout->ajouter_css('datatables.min');
 		$this->layout->ajouter_css('bootstrap.min');
