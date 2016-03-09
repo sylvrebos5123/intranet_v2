@@ -1,0 +1,35 @@
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+
+}
+
+.fc-view-container
+{
+    background-color:white;
+    border-color: #ddd;
+    font-size: 12pt;
+}
+
+/*div.fc-content,a.fc-time-grid-event
+{
+    background-color: #039691;
+
+}*/
+
+
+
+/*.fc-event {
+
+    font-size: 1em;
+    border: 1px solid #039691; /* default BORDER color */
+    /*background-color: #039691; /* default BACKGROUND color */
+
+/*}*/
+
+a.lang
+{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
