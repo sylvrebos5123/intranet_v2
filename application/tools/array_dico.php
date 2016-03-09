@@ -3,7 +3,7 @@
 /* fichier généré par dico_generate_array.php  */ 
 /* sur base des informations contenues dans la */ 
 /* table `cpas_dico` dans la DB                */ 
-/* génére le : 2016-02-26 05:30:14             */ 
+/* génére le : 2016-03-09 02:31:39             */ 
 /***********************************************/ 
 /* les modifications manuelles effectuées dans */ 
 /* ce fichier seront écrasés lors de           */ 
@@ -98,6 +98,8 @@ $array_dico["choise_a_list"]["F"]="Choisir une liste";
 $array_dico["choise_a_list"]["N"]="Kies een lijst";
 $array_dico["choisir_groupe"]["F"]="choisir_groupe[fr]";
 $array_dico["choisir_groupe"]["N"]="choisir_groupe[nl]";
+$array_dico["choix_cartouches"]["F"]="Choisissez une ou plusieurs couleurs de cartouche";
+$array_dico["choix_cartouches"]["N"]="Kies een of meerdere kleuren cartridge";
 $array_dico["civilite"]["F"]="Civilité";
 $array_dico["civilite"]["N"]="civilite[nl]";
 $array_dico["close"]["F"]="close[fr]";
@@ -110,6 +112,16 @@ $array_dico["code_postal"]["F"]="Code postal";
 $array_dico["code_postal"]["N"]="code_postal[nl]";
 $array_dico["code_type"]["F"]="code_type[fr]";
 $array_dico["code_type"]["N"]="code_type[nl]";
+$array_dico["color_black"]["F"]="Noir";
+$array_dico["color_black"]["N"]="Zwart";
+$array_dico["color_cyan"]["F"]="Cyan";
+$array_dico["color_cyan"]["N"]="Cyan";
+$array_dico["color_magenta"]["F"]="Magenta";
+$array_dico["color_magenta"]["N"]="Magenta";
+$array_dico["color_yellow"]["F"]="Jaune";
+$array_dico["color_yellow"]["N"]="Geel";
+$array_dico["comment"]["F"]="Commentaire";
+$array_dico["comment"]["N"]="Commentaar";
 $array_dico["connexion_intranet"]["F"]="Connectez-vous à l'Intranet";
 $array_dico["connexion_intranet"]["N"]="Inloggen op het Intranet";
 $array_dico["consulter_annuaire"]["F"]="Consulter l'annuaire";
@@ -210,6 +222,8 @@ $array_dico["email"]["F"]="Email";
 $array_dico["email"]["N"]="Email";
 $array_dico["end_date"]["F"]="Date de Fin";
 $array_dico["end_date"]["N"]="Einddatum";
+$array_dico["envoyer_commande"]["F"]="Envoyer la commande";
+$array_dico["envoyer_commande"]["N"]="Sturen het bestellen";
 $array_dico["equiv_tp"]["F"]="Equivalent temps plein";
 $array_dico["equiv_tp"]["N"]="equiv_tp[nl]";
 $array_dico["etat"]["F"]="Etat";
@@ -418,6 +432,8 @@ $array_dico["order_archive_1er"]["F"]="Ordre Archive Une";
 $array_dico["order_archive_1er"]["N"]="Order van Archive 'Een'";
 $array_dico["order_article_1er"]["F"]="Ordre Article Une";
 $array_dico["order_article_1er"]["N"]="Order van Artikle 'Een'";
+$array_dico["order_cartridge"]["F"]="Commande de cartouches";
+$array_dico["order_cartridge"]["N"]="bestellen van printcartridges";
 $array_dico["order_evenement_1er"]["F"]="Ordre Evenement Une";
 $array_dico["order_evenement_1er"]["N"]="Order van Evenement 'Een'";
 $array_dico["organigramme_cpas"]["F"]="Organigramme du CPAS";
@@ -436,6 +452,10 @@ $array_dico["Photos"]["F"]="Photos";
 $array_dico["Photos"]["N"]="foto's";
 $array_dico["police"]["F"]="Police";
 $array_dico["police"]["N"]="Politie";
+$array_dico["pour_quand"]["F"]="Pour quand ?";
+$array_dico["pour_quand"]["N"]="Wanneer ?";
+$array_dico["pour_qui"]["F"]="Pour quel agent ?";
+$array_dico["pour_qui"]["N"]="Waarvoor medewerker ?";
 $array_dico["prenom"]["F"]="Prénom";
 $array_dico["prenom"]["N"]="Voornaam";
 $array_dico["present_am"]["F"]="Présence le matin";
@@ -458,6 +478,8 @@ $array_dico["publis_date"]["F"]="publis_date[fr]";
 $array_dico["publis_date"]["N"]="publis_date[nl]";
 $array_dico["publis_user"]["F"]="publis_user[fr]";
 $array_dico["publis_user"]["N"]="publis_user[nl]";
+$array_dico["quelle_imprimante"]["F"]="Pour quelle imprimante ?";
+$array_dico["quelle_imprimante"]["N"]="Voor elke printer ?";
 $array_dico["quel_id_contrat?"]["F"]="Quel id de contrat?";
 $array_dico["quel_id_contrat?"]["N"]="quel_id_contrat?[nl]";
 $array_dico["radio"]["F"]="radio[fr]";
