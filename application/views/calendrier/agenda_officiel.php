@@ -54,6 +54,7 @@
 					right: 'month,agendaWeek,agendaDay'
 				},
 				defaultDate: '<?php echo date('Y-m-d');?>',
+				businessHours: true,
 				defaultView:'agendaWeek',
 				timezone: currentTimezone,
 				lang: currentLangCode,
@@ -100,7 +101,8 @@
 					{
 						title: '<?php echo $v['SUJET'].$ou;?>',
 						start: '<?php echo $start_date[2].'-'.$start_date[1].'-'.$start_date[0].$start_heure;?>',
-						end: '<?php echo $end_date[2].'-'.$end_date[1].'-'.$end_date[0].$end_heure;?>'
+						end: '<?php echo $end_date[2].'-'.$end_date[1].'-'.$end_date[0].$end_heure;?>',
+						color: '#039691'
 					},
 				
 			<?php
