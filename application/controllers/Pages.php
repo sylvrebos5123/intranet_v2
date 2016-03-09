@@ -59,9 +59,9 @@ class Pages extends CI_Controller
 		
 		
 		//events
-		$rootpath = APPPATH.'\\libraries';
-		include($rootpath.'\\exchange\\ews.php');
-		include($rootpath.'\\config_ews\\config_ews.php');
+		$rootpath = APPPATH.'libraries';
+		include($rootpath.'/exchange/ews.php');
+		include($rootpath.'/config_ews/config_ews.php');
 
 		//agenda officiel
 		$username=trim($email_array['agenda_news_F']['email']);
@@ -167,40 +167,44 @@ class Pages extends CI_Controller
 	{
 		$this->layout->view('pages/archives');
 	}
-	/*function agenda_officiel()
+
+	/*Menu agendas/Agenda officiel*/
+	function agenda_officiel()
 	{
-		$rootpath = APPPATH.'\\libraries';
-		include($rootpath.'\\exchange\\ews.php');
-		include($rootpath.'\\config_ews\\config_ews.php');
+		$rootpath = APPPATH.'libraries';
+		include($rootpath.'/exchange/ews.php');
+		include($rootpath.'/config_ews/config_ews.php');
 
 		//agenda officiel
 		$username=trim($email_array['agenda_off']['email']);
 		$password=trim($email_array['agenda_off']['email_psw']);
-		$start_date='01-01-2016';
-		$end_date='01-01-2017';
-		$data['a_rdv'] = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,''); 
-		$this->layout->view('pages/agenda_officiel',$data);
-		
+		$start_date='01-01-'.date('Y');
+		$end_date='31-12-'.date('Y');
+		$data['a_rdv'] = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,'');
+		$this->layout->view('calendrier/agenda_officiel',$data);
+
 	}
-	
-	
-	function annuaire_pdf()
+
+	/*Menu agendas/Mon agenda*/
+	function mon_agenda()
 	{
-		//$this->loadModel('Page');
-		
+		$rootpath = APPPATH.'libraries';
+		include($rootpath.'/exchange/ews.php');
+		include($rootpath.'/config_ews/config_ews.php');
+
+		//agenda officiel
+		$username=trim($_SESSION['User']->email);
+		$password=trim(base64_decode($_SESSION['User']->password_email));
+		$start_date='01-01-'.date('Y');
+		$end_date='31-12-'.date('Y');
+		$data['a_rdv'] = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,'');
+		$this->layout->view('calendrier/mon_agenda',$data);
+
 	}
-	
-*/
+
 	
 	function profil($id = null)
 	{
-		//Infos agent
-		
-		/*$data['user']=$this->db->select('registre_id,nom,prenom,email,langue,mobile_pro,personne_confiance')
-							->from('cpas_agents')
-							->where(array('cpas_agents.id_agent'=>$_SESSION['User']->id_agent))
-							->get()
-							->result();*/
 		
 		//Infos contrat
 		
@@ -252,7 +256,8 @@ class Pages extends CI_Controller
 		$data['agents']=$this->db->select('cpas_agents.id_agent,nom,prenom')
             ->from('cpas_agents')
             ->join('cpas_contrats','cpas_contrats.id_agent=cpas_agents.id_agent','left')
-            ->where('cpas_agents.id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+            ->where('cpas_agents.login_nt<>"" AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+			->order_by("nom","asc")
             ->get()
             ->result();
 
