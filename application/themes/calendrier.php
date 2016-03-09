@@ -27,29 +27,39 @@ if(!isset($_SESSION['User']))
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url().'assets/fullcalendar-2.6.0/fullcalendar.css';?>" />
 		<link href="<?php echo base_url().'assets/fullcalendar-2.6.0/fullcalendar.print.css';?>" rel='stylesheet' media='print' />
 	
-		<style>
 
-			body {
-				margin: 5px;
-				background-color:white;
-			}
-
-			#calendar {
-				max-width: 900px;
-				margin: 0 auto;
-			}
-			
-			a.lang
-			{
-			text-decoration:none;
-			color:black;
-			font-weight:bold;
-			}
-
-		</style>
 	</head>
+	<body id="home" data-spy="scroll" data-target=".navbar-fixed-top">
+	<div id="wrapper">
 
-	<body>
+
+		<!-- Navigation -->
+
+		<?php include('menu.php');?>
+
+		<?php require_once('sidebar2.php');?>
+
+
+		<div id="page-wrapper">
+
+			<div class="container-fluid">
+				<?php echo $output; ?>
+
+				<?php foreach($js as $url): ?>
+					<script type="text/javascript" src="<?php echo $url;?>"></script>
+
+				<?php endforeach; ?>
+			</div>
+			<!-- /.container-fluid -->
+
+
+		</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+
+
+	<!--<body>
 
 		<div class="container-fluid">
 		<p class="text-right">
@@ -67,7 +77,7 @@ if(!isset($_SESSION['User']))
 			<?php echo $output; ?>
 		
 		
-		</div>
+		</div>-->
             <!-- /.container-fluid -->
 			
 	</body>
