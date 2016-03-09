@@ -21,7 +21,6 @@
 
 foreach($menu as $k=>$v)
 {
-	//echo $v->{'libelle_'.$_SESSION['langue']};
 	$href='';
 	$chevron_down='';
 	
@@ -85,7 +84,9 @@ foreach($menu as $k=>$v)
 							}
 					?>
 						<li>
-							<a href="<?php echo $lien;?>" >
+
+							<a href="<?php echo ROOT.'/'.$lien;?>">
+
 								<?php echo $w->{'sous_menu_'.$_SESSION['langue']};?>
 							</a>
 						</li>
@@ -106,7 +107,7 @@ foreach($menu as $k=>$v)
 					}
 					?>
 						<li>
-							<a href="<?php echo $lien;?>">
+							<a href="<?php echo ROOT.'/'.$lien;?>">
 								<?php echo $w->{'sous_menu_'.$_SESSION['langue']};?>
 							</a>
 						</li>
