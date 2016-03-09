@@ -8,28 +8,28 @@ class Calendrier extends CI_Controller
 	{
 		parent::__construct();
 		
-		//	Chargement des ressources pour tout le contrôleur
+		//	Chargement des ressources pour tout le contr?leur
 		$this->load->database();
 		$this->load->helper('MY_url_helper');
 		$this->load->helper('assets_helper');
-		$this->load->library('layout');
+		$this->load->library('Layout');
 		//CSS
-		//$this->layout->ajouter_css('datatables.min');
 		$this->layout->ajouter_css('bootstrap.min');
 		$this->layout->ajouter_css('sb-admin');
+		$this->layout->ajouter_css('style_calendar');
 		//JS
-		$this->layout->ajouter_js('jquery');
+		//$this->layout->ajouter_js('jquery');
 		$this->layout->ajouter_js('bootstrap.min');
-		//$this->layout->ajouter_js('my_functions');
+		$this->layout->ajouter_js('my_functions');
 		$this->layout->set_theme('calendrier');
 		
 	}
 	
 	function agenda_officiel()
 	{
-		$rootpath = APPPATH.'\\libraries';
-		include($rootpath.'\\exchange\\ews.php');
-		include($rootpath.'\\config_ews\\config_ews.php');
+		$rootpath = APPPATH.'libraries';
+		include($rootpath.'/exchange/ews.php');
+		include($rootpath.'/config_ews/config_ews.php');
 
 		//agenda officiel
 		$username=trim($email_array['agenda_off']['email']);
@@ -43,9 +43,9 @@ class Calendrier extends CI_Controller
 	
 	function mon_agenda()
 	{
-		$rootpath = APPPATH.'\\libraries';
-		include($rootpath.'\\exchange\\ews.php');
-		include($rootpath.'\\config_ews\\config_ews.php');
+		$rootpath = APPPATH.'libraries';
+		include($rootpath.'/exchange/ews.php');
+		include($rootpath.'/config_ews/config_ews.php');
 
 		//agenda officiel
 		$username=trim($_SESSION['User']->email);
