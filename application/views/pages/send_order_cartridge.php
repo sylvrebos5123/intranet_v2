@@ -1,7 +1,15 @@
 <div class="row">
 
     <div class="col-lg-12">
+        <?php
+        if(!empty($_SESSION['flash_message']))
+        {
+            ?>
 
+            <p class="alert alert-success"><?php echo $_SESSION['flash_message']; ?></p>
+            <?php
+        }
+        ?>
         <h1 class="page-header">
             <?php echo dico("order_cartridge",$_SESSION['langue']); ?>
         </h1>
@@ -16,7 +24,7 @@
     </div>
 </div>
 
-<form action="<?php echo site_url('pages/edit_order_cartridge/'.$_SESSION['User']->id_agent.'?langue='.$_SESSION['langue']);?>" method="post">
+<form action="<?php //echo site_url('pages/edit_order_cartridge/'.$_SESSION['User']->id_agent.'?langue='.$_SESSION['langue']);?>" method="post">
 
     <fieldset>
         <!--<legend><h2><?php echo dico("order_cartridge",$_SESSION['langue']); ?>:</h2></legend>-->
@@ -58,21 +66,30 @@
 
             </div>
         </div>
-
+        <?php echo form_error('date_order'); ?>
         <div class="form-group row">
             <label class="col-sm-2" for="inputid_stock"><?php echo dico("quelle_imprimante",$_SESSION['langue']);?> </label>
             <div class="col-sm-10">
-                <input type="text" name="id_stock" id="inputid_stock" class="form-control" value="">
+                <input type="text" name="id_stock" id="inputid_stock" class="form-control" value="<?php echo set_value('id_stock'); ?>">
             </div>
         </div>
-
+        <?php echo form_error('id_stock'); ?>
         <hr>
         <p><strong><?php echo dico("choix_cartouches",$_SESSION['langue']);?> : </strong></p>
         <hr>
         <div class="form-group row">
             <label class="col-sm-2" for="inputcolor_cyan"><?php echo dico("color_cyan",$_SESSION['langue']);?> : </label>
+            <div class="col-sm-1"><input type="checkbox" name="color[]" value="1" <?php echo set_checkbox('color[]', '1'); ?> /></div>
 
-            <div class="col-sm-1">
+            <label class="col-sm-2" for="inputcolor_magenta"><?php echo dico("color_magenta",$_SESSION['langue']);?> : </label>
+            <div class="col-sm-1"><input type="checkbox" name="color[]" value="2" <?php echo set_checkbox('color[]', '2'); ?> /></div>
+
+            <label class="col-sm-2" for="inputcolor_yellow"><?php echo dico("color_yellow",$_SESSION['langue']);?> : </label>
+            <div class="col-sm-1"><input type="checkbox" name="color[]" value="3" <?php echo set_checkbox('color[]', '3'); ?> /></div>
+
+            <label class="col-sm-2" for="inputcolor_black"><?php echo dico("color_black",$_SESSION['langue']);?> : </label>
+            <div class="col-sm-1"><input type="checkbox" name="color[]" value="4" <?php echo set_checkbox('color[]', '4'); ?> /></div>
+            <!--<div class="col-sm-1">
                 <input type="hidden" name="color_cyan" id="inputcolor_cyan" value=0 >
                 <input type="checkbox" name="color_cyan" value="1" >
             </div>
@@ -96,8 +113,9 @@
             <div class="col-sm-1">
                 <input type="hidden" name="color_black" id="inputcolor_black" value=0 >
                 <input type="checkbox" name="color_black" value="1">
-            </div>
+            </div>-->
         </div>
+        <?php echo form_error('color[]'); ?>
         <!-- textarea comment-->
         <div class="form-group row">
             <label class="col-sm-2" for="inputcomment"><?php echo dico("comment",$_SESSION['langue']);?> : </label>
@@ -121,3 +139,11 @@
     </fieldset>
 
 </form>
+<script>
+    window.setTimeout(function() {
+        $("p.alert-success").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 2000);
+    <?php unset($_SESSION['flash_message']);?>
+</script>
