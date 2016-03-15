@@ -105,7 +105,7 @@ class Pages extends CI_Controller
 		$data['applis'] = $this->db->select('*')
 						->from('intranet_v2_sous_menu')
 						->join('cpas_agents_applis',' intranet_v2_sous_menu.id_sous_menu=cpas_agents_applis.id_appli')
-						->where(array('id_menu'=>4))
+						->where('id_menu=4 and id_agent='.$_SESSION['User']->id_agent)
 						->order_by('order_list', 'asc')
 						->get()
 						->result();
@@ -153,7 +153,7 @@ class Pages extends CI_Controller
 						->join('cpas_services','cpas_contrats.id_ser=cpas_services.id_ser','left')
 						->join('cpas_cellules','cpas_contrats.id_cel=cpas_cellules.id_cel','left')
 						->join('cpas_fonctions','cpas_contrats.id_fonc=cpas_fonctions.id_fonc','left')
-						->where('cpas_contrats.actif=1 AND cpas_contrats.id_dep<>5 AND cpas_contrats.id_ser<>115')
+						->where('cpas_contrats.actif=1 AND cpas_contrats.id_dep<>5 AND cpas_contrats.id_ser<>'.PERS_CONF)
 						->order_by('nom', 'asc')
 						->order_by('prenom', 'asc')
 						->get()
@@ -222,7 +222,7 @@ class Pages extends CI_Controller
 						->join('cpas_services','cpas_contrats.id_ser=cpas_services.id_ser','left')
 						->join('cpas_cellules','cpas_contrats.id_cel=cpas_cellules.id_cel','left')
 						->join('cpas_fonctions','cpas_contrats.id_fonc=cpas_fonctions.id_fonc','left')
-						->where('id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+						->where('id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>'.PERS_CONF)
 						->get()
 						->result();
 		//print_r($_SESSION['User']);
@@ -244,7 +244,7 @@ class Pages extends CI_Controller
 		$this->db->update('cpas_contrats');
 		
 		
-		$this->session->set_flashdata( 'message',dico('infos_bien_enregistrees',$_SESSION['langue']));
+		$this->session->set_flashdata('message',dico('infos_bien_enregistrees',$_SESSION['langue']));
 		$_SESSION['flash_message'] = $this->session->flashdata('message');
 		redirect(site_url("pages/profil?langue=".$_SESSION['langue']));
 	}
@@ -252,30 +252,79 @@ class Pages extends CI_Controller
 	/*Send order for cartridges*/
 	public function send_order_cartridge()
 	{
+
 		// read list of agents
 		$data['agents']=$this->db->select('cpas_agents.id_agent,nom,prenom')
             ->from('cpas_agents')
             ->join('cpas_contrats','cpas_contrats.id_agent=cpas_agents.id_agent','left')
-            ->where('cpas_agents.login_nt<>"" AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+            ->where('cpas_agents.login_nt<>"" AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>'.PERS_CONF.' AND cpas_contrats.id_ser<>'.RVA.' AND cpas_contrats.id_ser<>'.RHD)
 			->order_by("nom","asc")
             ->get()
             ->result();
 
-		$this->load->library('form_validation');
 
+
+		$this->load->library('form_validation');
 		// That method creates delimiters by default for messages errors (<p></p>).
 		$this->form_validation->set_error_delimiters('<p class="alert alert-danger has-error">', '</p>');
 
 		//	Form validation rules
+		$this->form_validation->set_rules('id_agent_request',  '"id_agent_request"',  'required',array(
+				'required' => 'Vous devez sélectionner un agent'));
+		$this->form_validation->set_rules('date_order', '"date_order"', 'required',array(
+				'required' => 'Vous devez sélectionner une date'));
+		$this->form_validation->set_rules('id_stock', '"id_stock"', 'required',array(
+				'required' => 'Vous devez sélectionner une imprimante'));
+		$this->form_validation->set_rules('color[]', '"color"', 'required', array(
+				'required' => 'Vous devez cocher au moins une couleur de cartouche'));
 
-		$this->form_validation->set_rules('login',  '"Login"',  'required');
-		$this->form_validation->set_rules('password', '"Password"', 'required');
+		//$this->form_validation->set_message('required', 'Ce champ ne peut pas être vide');
 
-		$this->form_validation->set_message('required', 'Ce champ ne peut pas être vide');
 
-		$this->layout->view('pages/send_order_cartridge',$data);
+		//$this->layout->view('pages/send_order_cartridge', $data);
+		if($this->form_validation->run()) {
+			//run link action form
+			$this->db->set('id_agent_request',$this->input->post('id_agent_request'));
+			$this->db->set('id_agent',$this->input->post('id_agent'));
+			$this->db->set('id_stock',$this->input->post('id_stock'));
+			$this->db->set('date_order',$this->input->post('date_order'));
+			$this->db->set('date_created',date('Y-m-d H:i:s'));
+			$this->db->set('date_updated',date('Y-m-d H:i:s'));
+			$this->db->set('comment',$this->input->post('comment'));
+
+			//cartridges color
+			if($this->input->post('color[0]')==1)
+			{
+				$this->db->set('color_cyan',1);
+			}
+			if($this->input->post('color[1]')==2)
+			{
+				$this->db->set('color_magenta',1);
+			}
+			if($this->input->post('color[2]')==3)
+			{
+				$this->db->set('color_yellow',1);
+			}
+			if($this->input->post('color[3]')==4)
+			{
+				$this->db->set('color_black',1);
+			}
+
+			$this->db->insert('gestion_order_cartridge');
+
+
+			$this->session->set_flashdata('message',dico('infos_bien_enregistrees',$_SESSION['langue']));
+			$_SESSION['flash_message'] = $this->session->flashdata('message');
+			redirect(site_url("pages/send_order_cartridge?langue=".$_SESSION['langue']));
+		}
+		else //If form not activated
+		{
+			$this->layout->view('pages/send_order_cartridge', $data);
+
+		}
 
 	}
+
 
 
 }
