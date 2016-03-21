@@ -4,6 +4,7 @@ define('ROOT', "http://testweb.cpasixelles.be");
 define('RVA', 15);
 define('RHD', 14);
 define('PERS_CONF', 115);
+define('INFORMATIQUE', 17);
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
