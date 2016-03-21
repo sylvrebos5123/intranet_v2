@@ -3,7 +3,7 @@
 /* fichier généré par dico_generate_array.php  */ 
 /* sur base des informations contenues dans la */ 
 /* table `cpas_dico` dans la DB                */ 
-/* génére le : 2016-03-09 03:27:45             */ 
+/* génére le : 2016-03-21 04:08:04             */ 
 /***********************************************/ 
 /* les modifications manuelles effectuées dans */ 
 /* ce fichier seront écrasés lors de           */ 

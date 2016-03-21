@@ -111,18 +111,28 @@ class User extends CI_Controller
 		//->where(array('login_nt'=>$this->input->post('login'),'password_email'=>sha1($this->input->post('password'))))
 		->get()
 		->result();
-		//Form validation			
+
+
+		//Form validation
 		if($this->form_validation->run())
 		{
-			
+
 			//print_r($user);
-			
+
 			if(!empty($user))
 			{
 				//session_start();
 				$this->load->library('session');
 				//$this->session->set_userdata($user);
 				$this->session->set_userdata('User', $user[0]);
+
+				// read contracts
+				$contrats=$this->db->select('*')
+						->from('cpas_contrats')
+						->where('id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+						->get()
+						->result();
+				$this->session->set_userdata('Contrats', $contrats);
 				redirect(site_url("pages/index"));
 			}
 			else
@@ -130,14 +140,14 @@ class User extends CI_Controller
 				 $this->session->set_flashdata('noconnect', 'Aucun compte ne correspond à vos identifiants ');
 				redirect(site_url("user/login"));
 			}
-			
+
 		}
 		else
 		{
-			
+
 			$this->layout->view('user/login');
-			
-		} */
+
+		}*/
 	}
 	
 	function logout()
