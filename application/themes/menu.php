@@ -31,7 +31,21 @@
 			<!-- Top Menu Items -->
 			
             <ul class="nav navbar-right top-nav">
-				
+                <?php
+                foreach($_SESSION['Contrats'] as $item){
+
+                    if($item->id_ser == INFORMATIQUE)
+                    {
+                ?>
+                        <li>
+
+                            <a href="<?php echo site_url('pages/outil_admin?langue='.$_SESSION['langue']);?>" class="dropdown-toggle network" data-toggle="tooltip" data-placement="bottom" title="<?php echo dico('outil_admin',$_SESSION['langue']);?>"><i class="fa fa-users" ></i> </a>
+
+                        </li>
+                <?php
+                    }
+                }
+                ?>
 				<li class="dropdown">
 					<a href="#" class="my-tooltip dropdown-toggle urgence" data-toggle="dropdown" data-placement="bottom" title="<?php echo dico('numeros_urgence',$_SESSION['langue']);?>"><i class="fa fa-fw fa-phone-square"></i><b class="caret"></b></a>
 					<ul class="dropdown-menu message-dropdown">
