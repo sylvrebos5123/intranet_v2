@@ -271,8 +271,8 @@ class Pages extends CI_Controller
 		//	Form validation rules
 		$this->form_validation->set_rules('id_agent_request',  '"id_agent_request"',  'required',array(
 				'required' => 'Vous devez sélectionner un agent'));
-		$this->form_validation->set_rules('date_order', '"date_order"', 'required',array(
-				'required' => 'Vous devez sélectionner une date'));
+		/*$this->form_validation->set_rules('date_order', '"date_order"', 'required',array(
+				'required' => 'Vous devez sélectionner une date'));*/
 		$this->form_validation->set_rules('id_stock', '"id_stock"', 'required',array(
 				'required' => 'Vous devez sélectionner une imprimante'));
 		$this->form_validation->set_rules('color[]', '"color"', 'required', array(
@@ -287,7 +287,7 @@ class Pages extends CI_Controller
 			$this->db->set('id_agent_request',$this->input->post('id_agent_request'));
 			$this->db->set('id_agent',$this->input->post('id_agent'));
 			$this->db->set('id_stock',$this->input->post('id_stock'));
-			$this->db->set('date_order',$this->input->post('date_order'));
+			//$this->db->set('date_order',$this->input->post('date_order'));
 			$this->db->set('date_created',date('Y-m-d H:i:s'));
 			$this->db->set('date_updated',date('Y-m-d H:i:s'));
 			$this->db->set('comment',$this->input->post('comment'));
