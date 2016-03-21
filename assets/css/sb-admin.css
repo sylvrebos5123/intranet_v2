@@ -86,6 +86,8 @@ background-color: #777 !important;
 background-color: #be2025 !important;
 }
 
+
+
 	
 .cpas_yellow_border
 {
@@ -156,18 +158,11 @@ border-top:solid 5px #be2025;
 }
 
 .top-nav>li>a.urgence
-{
-	color: #fff;
-	background-color: #e51626;
-	
-}
+ {
+     color: #fff;
+     background-color: #e51626;
 
-.top-nav>li>a.urgence
-{
-	color: #fff;
-	background-color: #e51626;
-	
-}
+ }
 
 .top-nav>li>a.urgence:hover,
 .top-nav>li>a.urgence:focus,
@@ -175,9 +170,27 @@ border-top:solid 5px #be2025;
 .top-nav>.open>a.urgence:hover,
 .top-nav>.open>a.urgence:focus
 {
-	color: #fff;
-	background-color: #be2025;
-	
+    color: #fff;
+    background-color: #be2025;
+
+}
+
+.top-nav>li>a.network
+{
+    color: #fff;
+    background-color: #039691;
+
+}
+
+.top-nav>li>a.network:hover,
+.top-nav>li>a.network:focus,
+.top-nav>.open>a.network,
+.top-nav>.open>a.network:hover,
+.top-nav>.open>a.network:focus
+{
+    color: #fff;
+    background-color: #027a74;
+
 }
 
 .top-nav>li>a:hover,
