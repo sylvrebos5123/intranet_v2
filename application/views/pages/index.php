@@ -29,7 +29,8 @@
 					$i=0;
 					$panel_color='panel-yellow';
 					//print_r($articles);
-				//print_r($_SESSION['Contrats']);
+					//print_r($_SESSION['Contrats']);
+
 				?>
 					<div class="row">
 						<div class="col-lg-6">
