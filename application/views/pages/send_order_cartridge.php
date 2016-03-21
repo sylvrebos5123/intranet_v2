@@ -59,14 +59,14 @@
             </div>
         </div>
 
-        <div class="form-group row">
+       <!-- <div class="form-group row">
             <label class="col-sm-2" for="inputdate_order"><?php echo dico("pour_quand",$_SESSION['langue']);?> </label>
             <div class="col-sm-10">
                 <input type="date" name="date_order" id="inputdate_order" data-date="" data-date-format="DD-MMMM-YYYY" class="form-control" value="">
 
             </div>
         </div>
-        <?php echo form_error('date_order'); ?>
+        <?php echo form_error('date_order'); ?>-->
         <div class="form-group row">
             <label class="col-sm-2" for="inputid_stock"><?php echo dico("quelle_imprimante",$_SESSION['langue']);?> </label>
             <div class="col-sm-10">
@@ -79,41 +79,17 @@
         <hr>
         <div class="form-group row">
             <label class="col-sm-2" for="inputcolor_cyan"><?php echo dico("color_cyan",$_SESSION['langue']);?> : </label>
-            <div class="col-sm-1"><input type="checkbox" name="color[]" value="1" <?php echo set_checkbox('color[]', '1'); ?> /></div>
+            <div class="col-sm-1"><input type="checkbox" name="color[0]" value="1" <?php echo set_checkbox('color[0]', '1'); ?> /></div>
 
             <label class="col-sm-2" for="inputcolor_magenta"><?php echo dico("color_magenta",$_SESSION['langue']);?> : </label>
-            <div class="col-sm-1"><input type="checkbox" name="color[]" value="2" <?php echo set_checkbox('color[]', '2'); ?> /></div>
+            <div class="col-sm-1"><input type="checkbox" name="color[1]" value="2" <?php echo set_checkbox('color[1]', '2'); ?> /></div>
 
             <label class="col-sm-2" for="inputcolor_yellow"><?php echo dico("color_yellow",$_SESSION['langue']);?> : </label>
-            <div class="col-sm-1"><input type="checkbox" name="color[]" value="3" <?php echo set_checkbox('color[]', '3'); ?> /></div>
+            <div class="col-sm-1"><input type="checkbox" name="color[2]" value="3" <?php echo set_checkbox('color[2]', '3'); ?> /></div>
 
             <label class="col-sm-2" for="inputcolor_black"><?php echo dico("color_black",$_SESSION['langue']);?> : </label>
-            <div class="col-sm-1"><input type="checkbox" name="color[]" value="4" <?php echo set_checkbox('color[]', '4'); ?> /></div>
-            <!--<div class="col-sm-1">
-                <input type="hidden" name="color_cyan" id="inputcolor_cyan" value=0 >
-                <input type="checkbox" name="color_cyan" value="1" >
-            </div>
+            <div class="col-sm-1"><input type="checkbox" name="color[3]" value="4" <?php echo set_checkbox('color[3]', '4'); ?> /></div>
 
-            <label class="col-sm-2" for="inputcolor_magenta"><?php echo dico("color_magenta",$_SESSION['langue']);?> : </label>
-
-            <div class="col-sm-1">
-                <input type="hidden" name="color_magenta" id="inputcolor_magenta" value=0 >
-                <input type="checkbox" name="color_magenta" value="1">
-            </div>
-
-            <label class="col-sm-2" for="inputcolor_yellow"><?php echo dico("color_yellow",$_SESSION['langue']);?> : </label>
-
-            <div class="col-sm-1">
-                <input type="hidden" name="color_yellow" id="inputcolor_yellow" value=0 >
-                <input type="checkbox" name="color_yellow" value="1">
-            </div>
-
-            <label class="col-sm-2" for="inputcolor_black"><?php echo dico("color_black",$_SESSION['langue']);?> : </label>
-
-            <div class="col-sm-1">
-                <input type="hidden" name="color_black" id="inputcolor_black" value=0 >
-                <input type="checkbox" name="color_black" value="1">
-            </div>-->
         </div>
         <?php echo form_error('color[]'); ?>
         <!-- textarea comment-->
