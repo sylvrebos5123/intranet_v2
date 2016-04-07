@@ -59,7 +59,7 @@ class Pages extends CI_Controller
 		
 		
 		//events
-		$rootpath = APPPATH.'libraries';
+		/*$rootpath = APPPATH.'libraries';
 		include($rootpath.'/exchange/ews.php');
 		include($rootpath.'/config_ews/config_ews.php');
 
@@ -67,10 +67,10 @@ class Pages extends CI_Controller
 		$username=trim($email_array['agenda_news_F']['email']);
 		$password=trim($email_array['agenda_news_F']['email_psw']);
 		$start_date=date('d-m-Y');
-		$end_date=date('d-m-Y',strtotime('+6 month')); 
+		$end_date=date('d-m-Y',strtotime('+6 month')); */
 		/* $start_date='01-01-2014';
 		$end_date='31-12-2016';*/
-		$data['a_rdv'] = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,'');
+		//$data['a_rdv'] = GetEwsCalFromToListItems($username,$password,$start_date,$end_date,'');
 		
 		$this->layout->view('pages/index',$data);
 	}
@@ -323,6 +323,62 @@ class Pages extends CI_Controller
 
 		}
 
+	}
+
+	public function outil_admin()
+	{
+
+		$data['list_agents']=$this->db->select('*')
+				->from('cpas_agents')
+				->order_by('nom', 'asc')
+				->get()
+				->result();
+
+		if(!empty($this->input->post('inputagent')))
+		{
+			$data['applis']=$this->db->select('*')
+					->from('intranet_v2_sous_menu')
+					->where('id_menu=4')
+					->order_by('order_list', 'asc')
+					->get()
+					->result();
+
+			$data['applis_par_agent']=$this->db->select('*')
+					->from('cpas_agents_applis')
+					->where('id_agent='.$this->input->post('inputagent'))
+					->get()
+					->result();
+
+			//read data agent selected
+			$data['agent']=$this->db->select('*')
+					->from('cpas_agents')
+					->where('cpas_agents.id_agent='.$this->input->post('inputagent'))
+					->get()
+					->result();
+
+			//Infos contract
+			$data['contrats']=$this->db->select('id_contrat,
+							   tel_1,tel_2,horaire_appel_tel1,horaire_appel_tel2,
+							   cpas_contrats.modif_date as modif_date,cpas_contrats.modif_user as modif_user,
+							   cpas_hors_departements.label_'.$_SESSION['langue'].' as label_hors_dep,
+							   cpas_departements.label_'.$_SESSION['langue'].' as label_dep,
+							   cpas_services.label_'.$_SESSION['langue'].' as label_ser,
+							   cpas_cellules.label_'.$_SESSION['langue'].' as label_cel,
+							   cpas_fonctions.label_'.$_SESSION['langue'].' as label_fonc')
+					->from('cpas_contrats')
+					->join('cpas_hors_departements','cpas_contrats.id_hors_dep=cpas_hors_departements.id_hors_dep','left')
+					->join('cpas_departements','cpas_contrats.id_dep=cpas_departements.id_dep','left')
+					->join('cpas_services','cpas_contrats.id_ser=cpas_services.id_ser','left')
+					->join('cpas_cellules','cpas_contrats.id_cel=cpas_cellules.id_cel','left')
+					->join('cpas_fonctions','cpas_contrats.id_fonc=cpas_fonctions.id_fonc','left')
+					->where('id_agent='.$this->input->post('inputagent').' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>'.PERS_CONF)
+					->get()
+					->result();
+
+		}
+
+
+		$this->layout->view('pages/outil_admin',$data);
 	}
 
 
