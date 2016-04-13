@@ -206,7 +206,7 @@ class Pages extends CI_Controller
 	function profil($id = null)
 	{
 		
-		//Infos contrat
+		//Infos contract
 		
 		$data['contrats']=$this->db->select('id_contrat,
 							   tel_1,tel_2,horaire_appel_tel1,horaire_appel_tel2,
@@ -232,7 +232,7 @@ class Pages extends CI_Controller
 		
 	}
 	
-	/*Permet d'�diter les infos t�l�phoniques du profil*/
+	/*Permet d'éditer les infos téléphoniques du profil*/
 	function edit_infos_tel($id = null)
 	{
 		
@@ -247,6 +247,40 @@ class Pages extends CI_Controller
 		$this->session->set_flashdata('message',dico('infos_bien_enregistrees',$_SESSION['langue']));
 		$_SESSION['flash_message'] = $this->session->flashdata('message');
 		redirect(site_url("pages/profil?langue=".$_SESSION['langue']));
+	}
+
+	/*Permet d'éditer les accès aux applis*/
+	function edit_access_applis($id_agent)
+	{
+		/*$this->form_validation->set_rules('id_agent_request',  '"id_agent_request"',  'required',array(
+				'required' => 'Vous devez sélectionner un agent'));
+		$this->form_validation->set_rules('id_stock', '"id_stock"', 'required',array(
+				'required' => 'Vous devez sélectionner une imprimante'));
+		$this->form_validation->set_rules('color[]', '"color"', 'required', array(
+				'required' => 'Vous devez cocher au moins une couleur de cartouche'));*/
+
+		//if($this->form_validation->run())
+		//{
+			$array_applis=$this->input->post('id_appli[]');
+			//print_r($id_agent);
+			foreach($array_applis as $appli)
+			{
+				//echo $id_agent.' ';
+				//echo $appli.' ';
+				$this->db->set('id_agent',$id_agent);
+				$this->db->set('id_appli',$appli);
+				$this->db->insert('cpas_agents_applis');
+			}
+
+
+
+			//$this->db->set('id_appli[]',$this->input->post('id_appli[]'));
+			//print_r($this->input->post('id_appli[]'));
+
+		$this->session->set_flashdata('message',dico('infos_bien_enregistrees',$_SESSION['langue']));
+		$_SESSION['flash_message'] = $this->session->flashdata('message');
+		redirect(site_url("pages/outil_admin?langue=".$_SESSION['langue']));
+		//}
 	}
 
 	/*Send order for cartridges*/
@@ -330,6 +364,8 @@ class Pages extends CI_Controller
 
 		$data['list_agents']=$this->db->select('*')
 				->from('cpas_agents')
+				->join('cpas_contrats','cpas_contrats.id_agent=cpas_agents.id_agent','left')
+				->where('cpas_contrats.actif=1')
 				->order_by('nom', 'asc')
 				->get()
 				->result();
@@ -338,10 +374,11 @@ class Pages extends CI_Controller
 		{
 			$data['applis']=$this->db->select('*')
 					->from('intranet_v2_sous_menu')
-					->where('id_menu=4')
+					->where('id_menu=4 or id_menu=2')
 					->order_by('order_list', 'asc')
 					->get()
 					->result();
+
 
 			$data['applis_par_agent']=$this->db->select('*')
 					->from('cpas_agents_applis')
