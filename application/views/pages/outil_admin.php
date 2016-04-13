@@ -56,6 +56,8 @@
             </div>
             </div>
         </form>
+
+        <hr>
         <?php
         // If agent is selected
         if(!empty($_POST['inputagent']))
@@ -131,7 +133,6 @@
         <?php
             } //end foreach $agent
         ?>
-
 
 
     <hr>
@@ -235,9 +236,9 @@
             <?php
             }//end foreach contrats
             ?>
-
+        <hr>
         <!-- Access apps-->
-        <form action="<?php echo site_url('pages/edit_infos_generales/'.$_POST['inputagent'].'?langue='.$_SESSION['langue']);?>" method="post">
+        <form action="<?php echo site_url('pages/edit_access_applis/'.$_POST['inputagent'].'?langue='.$_SESSION['langue']);?>" method="post">
             <div class="form-group row ">
             <fieldset>
                 <legend><h2><?php echo dico("accès_applis",$_SESSION['langue']); ?>:</h2></legend>
@@ -248,6 +249,7 @@
                 $sous_menu='sous_menu_'.$_SESSION['langue'];
                 $checked='';
                 //print_r($applis_par_agent);
+                //applications
                 foreach($applis as $k=>$v)
                 {
                     foreach($applis_par_agent as $k_agents=>$v_agents)
@@ -260,11 +262,12 @@
 
                     } //$applis_par_agent
                 ?>
-                    <input type="checkbox" name="id_appli" value="<?php echo $v->id_sous_menu;?>" <?php echo $checked;?> >
+                    <input type="checkbox" name="id_appli[]" value="<?php echo $v->id_sous_menu;?>" <?php echo $checked;?> >
                     <?php echo $v->$sous_menu.'<br>';?>
                 <?php
                     $checked='';
                 } //$applis
+
                 ?>
 
             </div>
