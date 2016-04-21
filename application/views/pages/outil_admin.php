@@ -23,6 +23,15 @@
         </ol>
         <?php
         //echo $_POST['inputagent'];
+        //echo $id_agent;
+        //print_r($_SESSION['Apps']);
+        //print_r($this->input->get_cookie("Apps"));
+//        print_r($this->input->cookie('Apps',true));
+        //echo $_SESSION['Apps'][0]->id_agent;
+        /*foreach($_SESSION['Apps'] as $item)
+        {
+            echo $item->id_appli.'<br>';
+        }*/
         ?>
         <!-- form search agents -->
         <form action="<?php echo site_url('pages/outil_admin?langue='.$_SESSION['langue']);?>" method="post">
@@ -35,7 +44,7 @@
                     <?php
                     foreach($list_agents as $k_agents=>$v_agents)
                     {
-                        if($_POST['inputagent']==$v_agents->id_agent)
+                        if($id_agent==$v_agents->id_agent)
                         {
                             $selected='selected';
                         }
@@ -50,6 +59,7 @@
                     }
                     ?>
                 </select>
+
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary"><?php echo dico("valider",$_SESSION['langue']);?></button>
@@ -60,7 +70,7 @@
         <hr>
         <?php
         // If agent is selected
-        if(!empty($_POST['inputagent']))
+        if(!empty($id_agent))
         {
             foreach($agent as $k=>$v)
             {
@@ -121,6 +131,7 @@
                     <input type="hidden" name="id_agent" value="<?php echo $v->id_agent;?>" >
                     <input type="hidden" name="modif_date" value="" >
                     <input type="hidden" name="modif_user" value="<?php echo $v->login_nt;?>" >
+                    <input type="hidden" name="app" id="app" value="outil_admin" >
                     <div class="form-group row">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary"><?php echo dico("valider",$_SESSION['langue']);?></button>
@@ -223,7 +234,8 @@
                     <input type="hidden" name="modif_date" id="inputmodif_date" class="form-control" value="<?php echo $v->modif_date;?>">
                     <input type="hidden" name="modif_user" id="inputmodif_user" class="form-control" value="<?php echo $v->modif_user;?>">
                     <input type="hidden" name="id_contrat" id="inputid_contrat" class="form-control" value="<?php echo $v->id_contrat;?>">
-
+                    <input type="hidden" name="id_agent" id="inputid_agent" class="form-control" value="<?php echo $v->id_agent;?>">
+                    <input type="hidden" name="app" id="app" value="outil_admin" >
                 <div class="form-group row">
                   <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary"><?php echo dico("valider",$_SESSION['langue']);?></button>
@@ -238,7 +250,7 @@
             ?>
         <hr>
         <!-- Access apps-->
-        <form action="<?php echo site_url('pages/edit_access_applis/'.$_POST['inputagent'].'?langue='.$_SESSION['langue']);?>" method="post">
+        <form action="<?php echo site_url('pages/edit_access_applis/'.$id_agent.'?langue='.$_SESSION['langue']);?>" method="post">
             <div class="form-group row ">
             <fieldset>
                 <legend><h2><?php echo dico("accès_applis",$_SESSION['langue']); ?>:</h2></legend>
