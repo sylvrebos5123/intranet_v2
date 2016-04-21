@@ -75,19 +75,33 @@ class User extends CI_Controller
 					->where(array('login_nt'=>$this->input->post('login')))
 					->get()
 					->result();
-					
+					session_set_cookie_params(0);
 					$this->load->library('session');
 				
 					$this->session->set_userdata('User', $user[0]);
 
 					// read contracts
-
 					$contrats=$this->db->select('*')
 							->from('cpas_contrats')
-							->where('id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>115')
+							->where('id_agent='.$_SESSION['User']->id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>'.PERS_CONF)
 							->get()
 							->result();
 					$this->session->set_userdata('Contrats', $contrats);
+
+					//read autorized apps for the current agent
+
+//					$this->load->helper('cookie');
+					$applis_agent=$this->db->select('*')
+							->from('cpas_agents_applis')
+							->where('id_agent='.$_SESSION['User']->id_agent)
+							->get()
+							->result();
+					$this->session->set_userdata('Apps', $applis_agent);
+					//$_COOKIE['Apps']=$_SESSION['Apps'];
+//					var_dump($_SESSION['Apps']);
+//					exit;
+//					$this->input->set_cookie('Apps',$applis_agent);
+					//$this->input->cookie('Apps');
 					redirect(site_url("pages/index"));
 					
 				}
