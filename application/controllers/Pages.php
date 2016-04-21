@@ -23,6 +23,7 @@ class Pages extends CI_Controller
 		$this->layout->ajouter_js('my_functions');
 		
 	}
+
 	public function index()
 	{
 		$condition=array('to_publish_flag' => 1,'order_article_1er' => 1);
@@ -231,11 +232,41 @@ class Pages extends CI_Controller
 		$this->layout->view('pages/profil',$data);
 		
 	}
-	
+
+
+	/*Permet d'éditer les données générales d'un agent*/
+	function edit_infos_generales($id = null)
+	{
+
+		//$this->db->set('registre_id',$this->input->post('registre_id'));
+		//$this->db->set('nom',$this->input->post('nom'));
+		//$this->db->set('prenom',$this->input->post('prenom'));
+		$this->db->set('login_nt',$this->input->post('login_nt'));
+		$this->db->set('email',$this->input->post('email'));
+		$this->db->set('mobile_pro',$this->input->post('mobile_pro'));
+		$this->db->set('personne_confiance',$this->input->post('personne_confiance'));
+		//$this->db->set('modif_date',date('Y-m-d H:i:s'));
+		//$this->db->set('modif_user',$_SESSION['User']->login_nt);
+		$this->db->where('id_agent',$this->input->post('id_agent'));
+		$this->db->update('cpas_agents');
+
+
+		$this->session->set_flashdata('message',dico('infos_bien_enregistrees',$_SESSION['langue']));
+		$_SESSION['flash_message'] = $this->session->flashdata('message');
+
+		//redirect(site_url("pages/profil?langue=".$_SESSION['langue']));
+
+		if($this->input->post('app')=='outil_admin')
+		{
+			redirect(site_url("pages/outil_admin/".$id."?langue=".$_SESSION['langue']));
+		}
+	}
+
 	/*Permet d'éditer les infos téléphoniques du profil*/
 	function edit_infos_tel($id = null)
 	{
-		
+		$this->db->set('tel_1',$this->input->post('tel_1'));
+		$this->db->set('tel_2',$this->input->post('tel_2'));
 		$this->db->set('horaire_appel_tel1',$this->input->post('horaire_appel_tel1'));
 		$this->db->set('horaire_appel_tel2',$this->input->post('horaire_appel_tel2'));
 		$this->db->set('modif_date',date('Y-m-d H:i:s'));
@@ -246,41 +277,43 @@ class Pages extends CI_Controller
 		
 		$this->session->set_flashdata('message',dico('infos_bien_enregistrees',$_SESSION['langue']));
 		$_SESSION['flash_message'] = $this->session->flashdata('message');
-		redirect(site_url("pages/profil?langue=".$_SESSION['langue']));
+
+
+
+		if($this->input->post('app')=='outil_admin')
+		{
+			redirect(site_url("pages/outil_admin/".$this->input->post('id_agent')."?langue=".$_SESSION['langue']));
+		}
+		else
+		{
+			redirect(site_url("pages/profil?langue=".$_SESSION['langue']));
+		}
 	}
 
 	/*Permet d'éditer les accès aux applis*/
 	function edit_access_applis($id_agent)
 	{
-		/*$this->form_validation->set_rules('id_agent_request',  '"id_agent_request"',  'required',array(
-				'required' => 'Vous devez sélectionner un agent'));
-		$this->form_validation->set_rules('id_stock', '"id_stock"', 'required',array(
-				'required' => 'Vous devez sélectionner une imprimante'));
-		$this->form_validation->set_rules('color[]', '"color"', 'required', array(
-				'required' => 'Vous devez cocher au moins une couleur de cartouche'));*/
-
-		//if($this->form_validation->run())
-		//{
+		if(!empty($id_agent))
+		{
+			//delete link between agent and apps
+			$this->db->where('id_agent', $id_agent);
+			$this->db->delete('cpas_agents_applis');
+		}
 			$array_applis=$this->input->post('id_appli[]');
 			//print_r($id_agent);
 			foreach($array_applis as $appli)
 			{
-				//echo $id_agent.' ';
-				//echo $appli.' ';
+				//insertion links
 				$this->db->set('id_agent',$id_agent);
 				$this->db->set('id_appli',$appli);
 				$this->db->insert('cpas_agents_applis');
+
 			}
-
-
-
-			//$this->db->set('id_appli[]',$this->input->post('id_appli[]'));
-			//print_r($this->input->post('id_appli[]'));
 
 		$this->session->set_flashdata('message',dico('infos_bien_enregistrees',$_SESSION['langue']));
 		$_SESSION['flash_message'] = $this->session->flashdata('message');
-		redirect(site_url("pages/outil_admin?langue=".$_SESSION['langue']));
-		//}
+		redirect(site_url("pages/outil_admin/".$id_agent."?langue=".$_SESSION['langue']));
+
 	}
 
 	/*Send order for cartridges*/
@@ -295,7 +328,6 @@ class Pages extends CI_Controller
 			->order_by("nom","asc")
             ->get()
             ->result();
-
 
 
 		$this->load->library('form_validation');
@@ -359,7 +391,7 @@ class Pages extends CI_Controller
 
 	}
 
-	public function outil_admin()
+	public function outil_admin($id = null)
 	{
 
 		$data['list_agents']=$this->db->select('*')
@@ -370,11 +402,25 @@ class Pages extends CI_Controller
 				->get()
 				->result();
 
-		if(!empty($this->input->post('inputagent')))
+
+		if(!empty($id))
 		{
+			$id_agent=$id;
+		}
+		else
+		{
+			if(!empty($this->input->post('inputagent')))
+			{
+				$id_agent=$this->input->post('inputagent');
+			}
+		}
+		//print_r($id_agent);
+		if(!empty($id_agent))
+		{
+			$data['id_agent']=$id_agent;
 			$data['applis']=$this->db->select('*')
 					->from('intranet_v2_sous_menu')
-					->where('id_menu=4 or id_menu=2')
+					->where('id_menu IN (2,4)')
 					->order_by('order_list', 'asc')
 					->get()
 					->result();
@@ -382,19 +428,19 @@ class Pages extends CI_Controller
 
 			$data['applis_par_agent']=$this->db->select('*')
 					->from('cpas_agents_applis')
-					->where('id_agent='.$this->input->post('inputagent'))
+					->where('id_agent='.$id_agent)
 					->get()
 					->result();
 
 			//read data agent selected
 			$data['agent']=$this->db->select('*')
 					->from('cpas_agents')
-					->where('cpas_agents.id_agent='.$this->input->post('inputagent'))
+					->where('cpas_agents.id_agent='.$id_agent)
 					->get()
 					->result();
 
 			//Infos contract
-			$data['contrats']=$this->db->select('id_contrat,
+			$data['contrats']=$this->db->select('id_contrat,id_agent,
 							   tel_1,tel_2,horaire_appel_tel1,horaire_appel_tel2,
 							   cpas_contrats.modif_date as modif_date,cpas_contrats.modif_user as modif_user,
 							   cpas_hors_departements.label_'.$_SESSION['langue'].' as label_hors_dep,
@@ -408,7 +454,7 @@ class Pages extends CI_Controller
 					->join('cpas_services','cpas_contrats.id_ser=cpas_services.id_ser','left')
 					->join('cpas_cellules','cpas_contrats.id_cel=cpas_cellules.id_cel','left')
 					->join('cpas_fonctions','cpas_contrats.id_fonc=cpas_fonctions.id_fonc','left')
-					->where('id_agent='.$this->input->post('inputagent').' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>'.PERS_CONF)
+					->where('id_agent='.$id_agent.' AND cpas_contrats.actif=1 AND cpas_contrats.id_ser<>'.PERS_CONF)
 					->get()
 					->result();
 
