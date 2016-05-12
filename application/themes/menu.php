@@ -50,7 +50,7 @@
 					<a href="#" class="my-tooltip dropdown-toggle urgence" data-toggle="dropdown" data-placement="bottom" title="<?php echo dico('numeros_urgence',$_SESSION['langue']);?>"><i class="fa fa-fw fa-phone-square"></i><b class="caret"></b></a>
 					<ul class="dropdown-menu message-dropdown">
 						<li class="message-preview">
-							<a href="#"><strong><?php echo dico('stewards',$_SESSION['langue']);?> :</strong> 0489/31 65 41 - **125</a>
+							<a href="#"><strong><?php echo dico('stewards',$_SESSION['langue']);?> :</strong> 0487/95 39 89 - **125</a>
 						</li>
 					
 						<li class="message-preview">
