@@ -3,7 +3,7 @@
 /* fichier généré par dico_generate_array.php  */ 
 /* sur base des informations contenues dans la */ 
 /* table `cpas_dico` dans la DB                */ 
-/* génére le : 2016-03-21 04:08:04             */ 
+/* génére le : 2016-05-12 03:23:14             */ 
 /***********************************************/ 
 /* les modifications manuelles effectuées dans */ 
 /* ce fichier seront écrasés lors de           */ 
@@ -12,6 +12,8 @@
 $array_dico=array();
 $array_dico[""]["F"]="";
 $array_dico[""]["N"]="";
+$array_dico["accès_applis"]["F"]="Accès aux applications";
+$array_dico["accès_applis"]["N"]="Application access";
 $array_dico["accueil"]["F"]="Accueil";
 $array_dico["accueil"]["N"]="Home";
 $array_dico["actif"]["F"]="Actif";
@@ -202,6 +204,8 @@ $array_dico["diplome(s)"]["F"]="Diplôme(s)";
 $array_dico["diplome(s)"]["N"]="diplome(s)[nl]";
 $array_dico["dispatch"]["F"]="Dispatch";
 $array_dico["dispatch"]["N"]="Dispatching";
+$array_dico["donnees_generales"]["F"]="Données générales";
+$array_dico["donnees_generales"]["N"]="Algemene gegevens";
 $array_dico["dtcrea"]["F"]="Date de création";
 $array_dico["dtcrea"]["N"]="dtcrea[nl]";
 $array_dico["dtmodif"]["F"]="Date de modification";
@@ -258,6 +262,8 @@ $array_dico["garde"]["F"]="Garde";
 $array_dico["garde"]["N"]="Wacht";
 $array_dico["genre"]["F"]="Genre";
 $array_dico["genre"]["N"]="Soort";
+$array_dico["gestion_tel"]["F"]="Gestion des téléphones";
+$array_dico["gestion_tel"]["N"]="Het beheren van telefoons";
 $array_dico["grade"]["F"]="Grade";
 $array_dico["grade"]["N"]="grade[nl]";
 $array_dico["grade_fonction"]["F"]="grade_fonction[fr]";
@@ -442,6 +448,8 @@ $array_dico["organisateur"]["F"]="organisateur[fr]";
 $array_dico["organisateur"]["N"]="organisateur[nl]";
 $array_dico["OUI"]["F"]="OUI";
 $array_dico["OUI"]["N"]="JA";
+$array_dico["outil_admin"]["F"]="Outil administrateur";
+$array_dico["outil_admin"]["N"]="Toepassing administrateur";
 $array_dico["ouvrier/employe"]["F"]="Ouvrier/employé";
 $array_dico["ouvrier/employe"]["N"]="ouvrier/employe[nl]";
 $array_dico["password_email"]["F"]="Mot de passe EMAIL";
@@ -450,6 +458,8 @@ $array_dico["personne_confiance"]["F"]="Personne de confiance";
 $array_dico["personne_confiance"]["N"]="Vertrouwenspersoon";
 $array_dico["Photos"]["F"]="Photos";
 $array_dico["Photos"]["N"]="foto's";
+$array_dico["photos_annuaire"]["F"]="Photo Annuaire";
+$array_dico["photos_annuaire"]["N"]="Photo's van Telefoonboek";
 $array_dico["police"]["F"]="Police";
 $array_dico["police"]["N"]="Politie";
 $array_dico["pour_quand"]["F"]="Pour quand ?";
@@ -480,6 +490,8 @@ $array_dico["publis_user"]["F"]="publis_user[fr]";
 $array_dico["publis_user"]["N"]="publis_user[nl]";
 $array_dico["quelle_imprimante"]["F"]="Pour quelle imprimante ?";
 $array_dico["quelle_imprimante"]["N"]="Voor elke printer ?";
+$array_dico["quel_agent"]["F"]="Quel agent?";
+$array_dico["quel_agent"]["N"]="Waar medewerker?";
 $array_dico["quel_id_contrat?"]["F"]="Quel id de contrat?";
 $array_dico["quel_id_contrat?"]["N"]="quel_id_contrat?[nl]";
 $array_dico["radio"]["F"]="radio[fr]";
