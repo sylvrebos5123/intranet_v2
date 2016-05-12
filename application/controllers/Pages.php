@@ -394,7 +394,7 @@ class Pages extends CI_Controller
 	public function outil_admin($id = null)
 	{
 
-		$data['list_agents']=$this->db->select('*')
+		$data['list_agents']=$this->db->select('DISTINCT (cpas_contrats.id_agent),nom,prenom')
 				->from('cpas_agents')
 				->join('cpas_contrats','cpas_contrats.id_agent=cpas_agents.id_agent','left')
 				->where('cpas_contrats.actif=1')
@@ -464,6 +464,17 @@ class Pages extends CI_Controller
 		$this->layout->view('pages/outil_admin',$data);
 	}
 
+	public function photos_annuaire()
+	{
+		$data['list_agents']=$this->db->select('DISTINCT (cpas_contrats.id_agent),nom,prenom')
+				->from('cpas_agents')
+				->join('cpas_contrats','cpas_contrats.id_agent=cpas_agents.id_agent','left')
+				->where('cpas_contrats.actif=1')
+				->order_by('nom', 'asc')
+				->get()
+				->result();
 
+		$this->layout->view('pages/photos_annuaire',$data);
+	}
 
 }
